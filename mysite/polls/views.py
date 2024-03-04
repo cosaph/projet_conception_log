@@ -15,6 +15,7 @@ def index(request):
     context = {}
     return HttpResponse(template.render(context, request))
 
+
 def scrap(request):
     # je souhaite récuperer l'input "ville" ce index.html pour l'utiliser dans ma requête
     
