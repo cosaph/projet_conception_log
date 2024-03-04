@@ -34,3 +34,5 @@ class Liste(models.Model):
 
     def __str__(self):
         return self.nom_course
+    
+        
