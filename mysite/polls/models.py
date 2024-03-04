@@ -25,12 +25,12 @@ class User(models.Model):
         return self.date_inscription >= timezone.now() - datetime.timedelta(days=1)
     
 
-class Liste(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+class Course(models.Model):
     nom_course= models.CharField(max_length=50)
     date_course = models.DateTimeField('date de la course')
     lieu_course = models.CharField(max_length=50)
-    date_creation = models.DateTimeField('date de création')
+    longueur = models.CharField(max_length=50)
 
     def __str__(self):
         return self.nom_course
