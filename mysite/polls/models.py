@@ -1,14 +1,36 @@
 
 # Create your models here.
+import datetime
+
 from django.db import models
+from django.utils import timezone
 
+'''
+L'idée ici c'est qu'on va créer une database (on bosse avec sql lite)
+pour notre futur site.
+On a besoin d'une  table user (pseudo, mdp (chiffré), email, date d'inscription)
+On aura besoin d'une table pour qu'un user est une liste d'envie de ses courses à pieds préférées
 
-class Question(models.Model):
-    question_text = models.CharField(max_length=200)
-    pub_date = models.DateTimeField("date published")
+'''
 
+class User(models.Model):
+    pseudo = models.CharField(max_length=50)
+    password = models.CharField(max_length=50)
+    email = models.EmailField()
+    date_inscription = models.DateTimeField('date d\'inscription')
 
-class Choice(models.Model):
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    choice_text = models.CharField(max_length=200)
-    votes = models.IntegerField(default=0)
+    def __str__(self):
+        return self.pseudo
+    def was_inscrit_recently(self):
+        return self.date_inscription >= timezone.now() - datetime.timedelta(days=1)
+    
+
+class Liste(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    nom_course= models.CharField(max_length=50)
+    date_course = models.DateTimeField('date de la course')
+    lieu_course = models.CharField(max_length=50)
+    date_creation = models.DateTimeField('date de création')
+
+    def __str__(self):
+        return self.nom_course
