@@ -1,20 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        body {
+            background-color: #CFE9EA;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
 
-<!--  titre -->
+        header {
+            padding: 10px;
+            text-align: right;
+        }
 
-<h1 class="typo-h1 text-white max-w-[530px]"><span class="text-dark-blue">Runner,</span><br>run the world</h1>
+        header a {
+            margin-left: 10px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            padding: 5px 10px;
+            border: 2px solid #0f0f0f;
+            border-radius: 5px;
+            background-color: #fff;
+        }
 
-<!--  couleur backround (c'est un test mdr)-->
-<style>
-    body {
-        background-color: #CFE9EA;
-    }
+        h1 {
+            margin-top: 50px;
+            text-align: center;
+        }
 
-</style>
+        form {
+            margin-left: 50px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <!--  titre -->
 
-<!--  formulaire de recherche -->
-<form>
-    <input type="text" name="q" placeholder="Rechercher un course" class="bg-white p-2 rounded-md">
-    <input type="text" name="q" placeholder="lieu" class="bg-white p-2 rounded-md">
-    <input type="text" name="q" placeholder="longueur" class="bg-white p-2 rounded-md">
-    <input type="submit" value="Run" class="bg-dark-blue text-white p-2 rounded-md">
-</form>
+    <h1 class="typo-h1 text-white max-w-[530px]"><span class="text-dark-blue">Runner,</span><br>run the world</h1>
+
+    <header>
+        <!-- Liens vers les pages d'inscription et de connexion en haut à droite -->
+        <a href="inscription.html">Inscription</a>
+        <a href="connexion.html">Connexion</a>
+    </header>
+
+
+    <!--  formulaire de recherche -->
+    <form>
+        <input type="text" name="q" placeholder="Rechercher une course" class="bg-white p-2 rounded-md">
+        <input type="text" name="q" placeholder="lieu" class="bg-white p-2 rounded-md">
+        <input type="text" name="q" placeholder="longueur" class="bg-white p-2 rounded-md">
+        <input type="submit" value="Run" class="bg-dark-blue text-white p-2 rounded-md">
+    </form>
+
+</body>
+</html>
+
