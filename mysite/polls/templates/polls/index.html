@@ -1,18 +1,20 @@
 
-<h1>Polls</h1>
+<!--  titre -->
 
-{% if latest_question_list %}
-    <ul>
-    {% for question in latest_question_list %}
-        <li><a href="/polls/{{ question.id }}/">{{ question.question_text }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No polls are available.</p>
-{% endif %}
+<h1 class="typo-h1 text-white max-w-[530px]"><span class="text-dark-blue">Runner,</span><br>run the world</h1>
 
 <!--  couleur backround (c'est un test mdr)-->
 <style>
     body {
-        background-color: #5D208F;
+        background-color: #CFE9EA;
     }
+
+</style>
+
+<!--  formulaire de recherche -->
+<form>
+    <input type="text" name="q" placeholder="Rechercher un course" class="bg-white p-2 rounded-md">
+    <input type="text" name="q" placeholder="lieu" class="bg-white p-2 rounded-md">
+    <input type="text" name="q" placeholder="longueur" class="bg-white p-2 rounded-md">
+    <input type="submit" value="Run" class="bg-dark-blue text-white p-2 rounded-md">
+</form>
