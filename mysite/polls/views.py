@@ -15,16 +15,22 @@ def index(request):
     context = {}
     return HttpResponse(template.render(context, request))
 
+from django.shortcuts import render
+
+import json
+from django.http import JsonResponse
+from django.shortcuts import render
+
 
 def scrap(request):
-    # je souhaite récuperer l'input "ville" ce index.html pour l'utiliser dans ma requête
-    
-    url = "https://www.runtrail.fr/events/search"
     ville = request.GET.get('ville')
-    params = {'city=' : ville}
-    response = requests.get(url, params=ville)
-    soup = BeautifulSoup(response.text, 'html.parser')
-    a_element = soup.find_all('a', class_ = "text-dark")
-    for a in a_element:
-        print(a.text)
 
+    base_url = "https://www.runtrail.fr/events/search"
+    query_params = {'region': ville}
+    response = requests.get(base_url, params=query_params)
+    soup = BeautifulSoup(response.text, 'html.parser')
+    a_elements = soup.find_all('a', class_="text-dark")
+    results = [a.text for a in a_elements]
+
+    # Return the results as JSON response
+    return JsonResponse(response.url, safe=False)
