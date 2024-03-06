@@ -1,53 +1,26 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'polls/style.css' %}">
+</head>
+    <div class="banner-image">
+        <img src="https://www.linksium.fr/uploads/meta-images/visuel-PredictTrail-v2.jpg" alt="Mountain Landscape" width=1600 height=auto>
+      </div>
+      <div style="position: absolute; top: 0; right: 0;", class="bg-dark-blue text-white p-2 rounded-md">
+        <a href="inscription.html" class="bg-dark-blue text-white p-2 rounded-md", class="bg-dark-blue text-white p-2 rounded-md">Inscription</a>
+
+        <a href="connexion.html" class="bg-dark-blue text-white p-2 rounded-md", class="bg-dark-blue text-white p-2 rounded-md">Connexion</a>
+    </div>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <style>
-        body {
-            background-color: #CFE9EA;
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-        }
-
-        header {
-            padding: 10px;
-            text-align: right;
-        }
-
-        header a {
-            margin-left: 10px;
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
-            padding: 5px 10px;
-            border: 2px solid #0f0f0f;
-            border-radius: 5px;
-            background-color: #fff;
-        }
-
-        h1 {
-            margin-top: 50px;
-            text-align: center;
-        }
-
-        form {
-            margin-left: 50px;
-            text-align: left;
-        }
-    </style>
-</head>
 <body>
     <!--  titre -->
 
     <h1 class="typo-h1 text-white max-w-[530px]"><span class="text-dark-blue">Runner,</span><br>run the world</h1>
 
     <header>
-        <!-- Liens vers les pages d'inscription et de connexion en haut à droite -->
-        <a href="inscription.html">Inscription</a>
-        <a href="connexion.html">Connexion</a>
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script>
@@ -78,7 +51,7 @@
     <body>
         <form>
             <center>
-            <select name="ville" class="bg-white p-2 rounded-md">
+                <select name="ville" class="bg-dark-blue text-white p-2 rounded-md" style="font-size: 0.9rem;">
                 <option value="auvergne-rhone-alpes">Auvergne-Rhône-Alpes</option>
                 <option value="bourgogne-franche-comte">Bourgogne-Franche-Comté</option>
                 <option value="bretagne">Bretagne</option>
@@ -95,8 +68,8 @@
             </select>
             <!-- <input type="range" name="distance" min="0" max="300" value="0" class="bg-white p-2 rounded-md">
             <span id="distanceValue">0 km</span> -->
-            <input type="text" name="minDistance" placeholder="Minimum Distance">
-            <input type="text" name="maxDistance" placeholder="Maximum Distance">
+            <input type="text" name="minDistance" placeholder="Minimum Distance", class="bg-dark-blue text-white p-2 rounded-md">
+            <input type="text" name="maxDistance" placeholder="Maximum Distance", class="bg-dark-blue text-white p-2 rounded-md">
             
             <input type="submit" value="Run" class="bg-dark-blue text-white p-2 rounded-md">
             <center id="results">
