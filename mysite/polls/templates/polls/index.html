@@ -48,37 +48,39 @@
         <!-- Liens vers les pages d'inscription et de connexion en haut à droite -->
         <a href="inscription.html">Inscription</a>
         <a href="connexion.html">Connexion</a>
-    </header>
 
-    <!--  formulaire de recherche -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script>
             $(document).ready(function() {
                 $('form').submit(function(event) {
-                    event.preventDefault(); // Prevent the form from submitting normally
-    
-                    var ville = $('input[name="q"]').val(); // Get the value of the input field
-    
-                    // Make an AJAX request to your Django view
-                    $.ajax({
-                        url: '/scrap/',
-                        data: {ville: ville},
-                        success: function(response) {
-                            $('#results').html(response); // Update the content of the 'results' div with the response from the server
-                        }
-                    });
+                event.preventDefault();
+
+                var ville = $('input[name="q"]').val();
+                var minDistance = $('input[name="minDistance"]').val();
+                var maxDistance = $('input[name="maxDistance"]').val();
+
+                $.ajax({
+                    url: '/scrap/',
+                    data: {ville: ville, minDistance: minDistance, maxDistance: maxDistance},
+                    success: function(response) {
+                        $('#results').html(response);
+                    }
                 });
             });
+        });
         </script>
-    </head>
     <body>
         <form>
             <input type="text" name="q" placeholder="region" class="bg-white p-2 rounded-md">
+            <!-- <input type="range" name="distance" min="0" max="300" value="0" class="bg-white p-2 rounded-md">
+            <span id="distanceValue">0 km</span> -->
+            <input type="text" name="minDistance" placeholder="Min" class="bg-white p-2 rounded-md">
+            <input type="text" name="maxDistance" placeholder="Max" class="bg-white p-2 rounded-md">
+            
             <input type="submit" value="Run" class="bg-dark-blue text-white p-2 rounded-md">
+            
         </form>
-        <div id="results"></div> <!-- This is where the results will be displayed -->
+        <center id="results"></center> <!-- This is where the results will be displayed -->
     </body>
-
-</body>
-</html>
+    </html>
 
