@@ -6,12 +6,12 @@
     <link rel="stylesheet" href="{% static 'polls/style.css' %}">
 </head>
     <div class="banner-image">
-        <img src="https://www.linksium.fr/uploads/meta-images/visuel-PredictTrail-v2.jpg" alt="Mountain Landscape" width=1600 height=auto>
-      </div>
-      <div style="position: absolute; top: 0; right: 0;", class="bg-dark-blue text-white p-2 rounded-md">
-        <a href="inscription.html" class="bg-dark-blue text-white p-2 rounded-md", class="bg-dark-blue text-white p-2 rounded-md">Inscription</a>
-
-        <a href="connexion.html" class="bg-dark-blue text-white p-2 rounded-md", class="bg-dark-blue text-white p-2 rounded-md">Connexion</a>
+        <img src="https://cdn.lepape-info.com/media/2012/06/2-2017-TDS-Michel-Lanne-photo-Damien-Rosso-www.droz-photo.com_.jpg" alt="Mountain Landscape" width=1600 height=1000>
+    </div>
+    <div style="position: absolute; top: 20px; right: 10px;">
+        <a href="inscription.html" class="bg-dark-blue text-white p-2 rounded-md", style="font-size: 0.9rem;">Inscription</a>
+        <span style="margin: 0 3px;"></span>
+        <a href="connexion.html" class="bg-dark-blue text-white p-2 rounded-md", style="font-size: 0.9rem;">Connexion</a>
     </div>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -51,7 +51,7 @@
     <body>
         <form>
             <center>
-                <select name="ville" class="bg-dark-blue text-white p-2 rounded-md" style="font-size: 0.9rem;">
+                <select name="ville" class="bg-dark-blue text-white p-2 rounded-md" style="font-size: 0.8rem;">
                 <option value="auvergne-rhone-alpes">Auvergne-Rhône-Alpes</option>
                 <option value="bourgogne-franche-comte">Bourgogne-Franche-Comté</option>
                 <option value="bretagne">Bretagne</option>
@@ -68,10 +68,11 @@
             </select>
             <!-- <input type="range" name="distance" min="0" max="300" value="0" class="bg-white p-2 rounded-md">
             <span id="distanceValue">0 km</span> -->
-            <input type="text" name="minDistance" placeholder="Minimum Distance", class="bg-dark-blue text-white p-2 rounded-md">
-            <input type="text" name="maxDistance" placeholder="Maximum Distance", class="bg-dark-blue text-white p-2 rounded-md">
             
-            <input type="submit" value="Run" class="bg-dark-blue text-white p-2 rounded-md">
+            <input type="text" name="minDistance" placeholder="Minimum Distance" class="bg-dark-blue text-white p-2 rounded-md", style="font-size: 0.6rem;">
+            <input type="text" name="maxDistance" placeholder="Maximum Distance" class="bg-dark-blue text-white p-2 rounded-md", style="font-size: 0.6rem;">
+            
+            <input type="submit" value="Run" class="bg-dark-blue text-white p-2 rounded-md", style="font-size: 0.7rem;">
             <center id="results">
             </center>
         </form>

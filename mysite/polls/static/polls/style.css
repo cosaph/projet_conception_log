@@ -7,12 +7,16 @@
     font-weight: bold;
   }
   
-  .text-white {
+.text-white {
     color: #ffffff;
   }
   
-  .text-dark-blue {
+.text-dark-blue {
     color: #192f3f;
+  }
+
+.text-light-grey {
+    color: #f0f0f0;
   }
   
 
@@ -22,7 +26,7 @@
   }
 
 
-  body {
+body {
     background-color: #CFE9EA;
     margin: 0;
     padding: 0;
@@ -67,6 +71,6 @@ form {
     padding: 0.5rem;
   }
   
-  .rounded-md {
-    border-radius: 0.25rem;
+.rounded-md {
+    border-radius: 0.5rem;
   }
