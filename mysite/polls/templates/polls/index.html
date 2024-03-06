@@ -52,35 +52,56 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script>
             $(document).ready(function() {
+                $('select[name="ville"]').change(function() { // Modification de 'region' à 'ville'
+                    var ville = $(this).val(); // Récupérer la valeur sélectionnée du menu déroulant
+                    var minDistance = $('input[name="minDistance"]').val();
+                    var maxDistance = $('input[name="maxDistance"]').val();
+        
+                    $.ajax({
+                        url: '/scrap/',
+                        data: {
+                            ville: ville,
+                            minDistance: minDistance,
+                            maxDistance: maxDistance
+                        },
+                        success: function(response) {
+                            $('#results').html(response);
+                        }
+                    });
+                });
+        
                 $('form').submit(function(event) {
-                event.preventDefault();
-
-                var ville = $('input[name="q"]').val();
-                var minDistance = $('input[name="minDistance"]').val();
-                var maxDistance = $('input[name="maxDistance"]').val();
-
-                $.ajax({
-                    url: '/scrap/',
-                    data: {ville: ville, minDistance: minDistance, maxDistance: maxDistance},
-                    success: function(response) {
-                        $('#results').html(response);
-                    }
+                    event.preventDefault();
                 });
             });
-        });
         </script>
     <body>
         <form>
-            <input type="text" name="q" placeholder="region" class="bg-white p-2 rounded-md">
+            <center>
+            <select name="ville" class="bg-white p-2 rounded-md">
+                <option value="auvergne-rhone-alpes">Auvergne-Rhône-Alpes</option>
+                <option value="bourgogne-franche-comte">Bourgogne-Franche-Comté</option>
+                <option value="bretagne">Bretagne</option>
+                <option value="centre-val-de-loire">Centre-Val de Loire</option>
+                <option value="corse">Corse</option>
+                <option value="grand-est">Grand Est</option>
+                <option value="guadeloupe">Guadeloupe</option>
+                <option value="guyane">Guyane</option>
+                <option value="hauts-de-france">Hauts-de-France</option>
+                <option value="la-reunion">La Réunion</option>
+                <option value="martinique">Martinique</option>
+                <option value="mayotte">Mayotte</option>
+                <option value="normandie">Normandie</option>
+            </select>
             <!-- <input type="range" name="distance" min="0" max="300" value="0" class="bg-white p-2 rounded-md">
             <span id="distanceValue">0 km</span> -->
-            <input type="text" name="minDistance" placeholder="Min" class="bg-white p-2 rounded-md">
-            <input type="text" name="maxDistance" placeholder="Max" class="bg-white p-2 rounded-md">
+            <input type="text" name="minDistance" placeholder="Minimum Distance">
+            <input type="text" name="maxDistance" placeholder="Maximum Distance">
             
             <input type="submit" value="Run" class="bg-dark-blue text-white p-2 rounded-md">
-            
+            <center id="results">
+            </center>
         </form>
-        <center id="results"></center> <!-- This is where the results will be displayed -->
-    </body>
+        </body>
     </html>
 

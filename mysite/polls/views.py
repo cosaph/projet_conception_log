@@ -18,9 +18,10 @@ def index(request):
     context = {}
     return HttpResponse(template.render(context, request))
 
+import urllib.parse
 
-#https://www.runtrail.fr/events/search?date=2024-03-11%3B2024-03-17&region=bretagne&distance=0%3B15
 def scrap(request):
+
     ville = request.GET.get('ville'),
     min_distance = request.GET.get('minDistance')
     max_distance = request.GET.get('maxDistance')
@@ -29,8 +30,8 @@ def scrap(request):
     results = []
     results2 = []
 
-    for page in range(1, 6):  # Loop through 5 pages
-        query_params = {'region': ville, 'country': 'FR', 'page': page, 'distance': f'{min_distance};{max_distance}'}
+    for page in range(1, 6):
+        query_params = {'region': ville, 'distance': f'{min_distance};{max_distance}', 'country': 'FR', 'page': page}
         response = requests.get(base_url, params=query_params)
         soup = BeautifulSoup(response.text, 'html.parser')
         a_elements = soup.find_all('a', class_="text-dark")
@@ -47,5 +48,5 @@ def scrap(request):
         table_html += '</table>'
 
     # Return the table HTML as the response
-    return JsonResponse(response.url, safe=False)
-    #return JsonResponse(table_html, safe=False)
+    #return JsonResponse(response.url, safe=False)
+    return JsonResponse(table_html, safe=False)
