@@ -21,6 +21,6 @@ urlpatterns = [
     # include result.html
     path('result.html', views.result, name='result'),
     
-    # ex: /polls/5/
-
+    path('inscription', views.create_user, name='create_user'),
+    path('inscription_done', views.inscription_done, name='inscription_done'),
 ]

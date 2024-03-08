@@ -26,7 +26,7 @@ from datetime import date
 from dateutil.relativedelta import relativedelta
 from django.shortcuts import redirect
 import urllib.parse
-
+from .forms import UserForm
 
 #### ----- Views ----- ####
 
@@ -70,3 +70,23 @@ def result(request):
     table_html = scrap(request)
     context = {'table_html': table_html}
     return HttpResponse(template.render(context, request))
+
+
+def create_user(request):
+    if request.method == 'POST':
+        form = UserForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            # # Vous pouvez effectuer d'autres opérations ici avant de sauvegarder
+            # appel de fonction pour traiter l'user (dont le hash)
+            print(user)
+            # user.save()
+            return redirect('inscription_done')
+    else:
+        form = UserForm()
+
+    return render(request, 'polls/inscription.html', {'form': form})
+
+def inscription_done(request):
+    return render(request, 'polls/inscription_done.html')
+
