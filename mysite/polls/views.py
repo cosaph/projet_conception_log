@@ -1,4 +1,16 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    views.py                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: ccottet <ccottet@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/03/08 09:14:40 by ccottet           #+#    #+#              #
+#    Updated: 2024/03/08 10:30:10 by ccottet          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
+#### ----- Libraries ----- ####
 from django.shortcuts import render
 import requests
 from bs4 import BeautifulSoup
@@ -12,17 +24,20 @@ from django.template import loader
 from django.http import JsonResponse
 from datetime import date
 from dateutil.relativedelta import relativedelta
+from django.shortcuts import redirect
+import urllib.parse
+
+
+#### ----- Views ----- ####
 
 def index(request):
     template = loader.get_template("polls/index.html")
     context = {}
     return HttpResponse(template.render(context, request))
 
-import urllib.parse
 
 def scrap(request):
-
-    ville = request.GET.get('ville'),
+    ville = request.GET.get('ville')
     min_distance = request.GET.get('minDistance')
     max_distance = request.GET.get('maxDistance')
 
@@ -40,13 +55,18 @@ def scrap(request):
         results += [a.text for a in a_elements]
         results2 += [i.text for i in i_elements]
 
-            # Generate HTML table
-        table_html = '<table>'
-        table_html += '<tr><th>Title</th><th>Lieu</th></tr>'
-        for result, result2 in zip(results, results2):
-            table_html += f'<tr><td>{result}</td><td>{result2}</td></tr>'
-        table_html += '</table>'
+    # Generate HTML table
+    table_html = '<table>'
+    table_html += '<tr><th>Title</th><th>Lieu</th></tr>'
+    for result, result2 in zip(results, results2):
+        table_html += f'<tr><td>{result}</td><td>{result2}</td></tr>'
+    table_html += '</table>'
 
-    # Return the table HTML as the response
-    #return JsonResponse(response.url, safe=False)
-    return JsonResponse(table_html, safe=False)
+    return table_html
+
+
+def result(request):
+    template = loader.get_template("polls/result.html")
+    table_html = scrap(request)
+    context = {'table_html': table_html}
+    return HttpResponse(template.render(context, request))

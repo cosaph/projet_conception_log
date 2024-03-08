@@ -31,7 +31,7 @@
                     var maxDistance = $('input[name="maxDistance"]').val();
         
                     $.ajax({
-                        url: '/scrap/',
+                        url: '/polls/',
                         data: {
                             ville: ville,
                             minDistance: minDistance,
@@ -72,9 +72,11 @@
             <input type="text" name="minDistance" placeholder="Minimum Distance" class="bg-dark-blue text-white p-2 rounded-md", style="font-size: 0.6rem;">
             <input type="text" name="maxDistance" placeholder="Maximum Distance" class="bg-dark-blue text-white p-2 rounded-md", style="font-size: 0.6rem;">
             
-            <input type="submit" value="Run" class="bg-dark-blue text-white p-2 rounded-md", style="font-size: 0.7rem;">
-            <center id="results">
-            </center>
+            <a href="result.html", class="bg-dark-blue text-white p-2 rounded-md" style="font-size: 0.7rem;" >
+                <input type="submit" value="Run" class="bg-dark-blue text-white p-2 rounded-md" style="font-size: 0.7rem;">
+            </a>
+<!--             <center id="results">
+            </center> -->
         </form>
         </body>
     </html>
