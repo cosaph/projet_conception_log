@@ -19,7 +19,7 @@ urlpatterns = [
     # ex: /polls/
     path("", views.index, name="index"),
     # include result.html
-    path('result.html', views.result, name='result'),
+    path('result', views.result, name='result'),
     
     path('inscription', views.create_user, name='create_user'),
     path('inscription_done', views.inscription_done, name='inscription_done'),

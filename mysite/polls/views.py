@@ -75,7 +75,9 @@ def result(request):
 def create_user(request):
     if request.method == 'POST':
         form = UserForm(request.POST)
+        print(request.POST)
         if form.is_valid():
+            print(form.cleaned_data)
             user = form.save(commit=False)
             # # Vous pouvez effectuer d'autres opérations ici avant de sauvegarder
             # appel de fonction pour traiter l'user (dont le hash)
