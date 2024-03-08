@@ -1,0 +1,46 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   styles_result.css                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ccottet <ccottet@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/08 11:11:13 by ccottet           #+#    #+#             */
+/*   Updated: 2024/03/08 12:36:17 by ccottet          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+.typo-h1 {
+    font-size: 3rem;
+    line-height: 1.2;
+    font-weight: bold;
+  }
+  
+.text-white {
+    color: #ffffff;
+  }
+  
+.text-dark-blue {
+    color: #192f3f;
+  }
+
+.text-light-grey {
+    color: #f0f0f0;
+  }
+
+
+body {
+    margin: 0; /* Supprime les marges par défaut du corps de la page */
+    padding: 0; /* Supprime les espaces de remplissage par défaut du corps de la page */
+    overflow: hidden; /* Supprime la barre de défilement horizontale */
+  }
+
+#full-image {
+    position: fixed; /* Positionne l'image de façon fixe par rapport à la fenêtre du navigateur */
+    top: 0; /* Positionne l'image en haut de la page */
+    left: 0; /* Positionne l'image à gauche de la page */
+    width: 100%; /* Définit la largeur de l'image à 100% de la largeur de la fenêtre du navigateur */
+    height: 100%; /* Définit la hauteur de l'image à 100% de la hauteur de la fenêtre du navigateur */
+    object-fit: cover; /* Ajuste la taille de l'image pour remplir complètement son conteneur */
+    z-index: -1; /* Place l'image en arrière-plan */
+  }

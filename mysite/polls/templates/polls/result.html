@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Résultats</title>
-</head>
+    <!--     ajout du fichier style.css -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'polls/styles_result.css' %}">
+   
 <body>
-    <h1>Résultats</h1>
-
+    <div class="body">
+        <img id="full-image" src="https://images.ctfassets.net/9olkiac82a1q/3dfjcw2A3j5w3CdM3YsznY/61aaec4ec86830b04781d8da077051d3/wide_UTMB22__AlexisBerg_8413.jpg?fm=webp&amp;w=4000" width="1500" height="495">
+        <h1 class="typo-h1"><span class="text-dark-blue">Resultats</span>Scrapping</h1>
+    </div>
     <!-- Insérer la table des résultats ici -->
+    <div class= "text-white">
     {{ table_html|safe }}
-
+    </div>
+    
 </body>
 </html>
