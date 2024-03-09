@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <body>
-        <form method="post" action="{% url 'create_user' %}">
+        <form method="post" action="{% url 'register' %}">
             {% csrf_token %}
             {{ form.as_p }}
             <button type="submit">Créer un compte</button>

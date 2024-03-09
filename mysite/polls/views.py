@@ -72,7 +72,8 @@ def result(request):
     return HttpResponse(template.render(context, request))
 
 
-def create_user(request):
+def register(request):
+    submitted = False
     if request.method == 'POST':
         form = UserForm(request.POST)
         print(request.POST)
@@ -81,14 +82,11 @@ def create_user(request):
             user = form.save(commit=False)
             # # Vous pouvez effectuer d'autres opérations ici avant de sauvegarder
             # appel de fonction pour traiter l'user (dont le hash)
-            print(user)
-            # user.save()
-            return redirect('inscription_done')
+            print(user.pseudo,user.password, user.email)
+            user.save()
+            return HttpResponse('Account created')
     else:
         form = UserForm()
-
-    return render(request, 'polls/inscription.html', {'form': form})
-
-def inscription_done(request):
-    return render(request, 'polls/inscription_done.html')
-
+        if 'submitted' in request.GET:
+            submitted = True
+    return render(request, 'polls/register.html', {'form': form})
