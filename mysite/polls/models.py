@@ -9,13 +9,13 @@ from django.contrib.auth.hashers import make_password
 '''
 L'idée ici c'est qu'on va créer une database (on bosse avec sql lite)
 pour notre futur site.
-On a besoin d'une  table user (pseudo, mdp (chiffré), email, date d'inscription)
+On a besoin d'une  table user (username, mdp (chiffré), email, date d'inscription)
 On aura besoin d'une table pour qu'un user est une liste d'envie de ses courses à pieds préférées
 
 '''
 
 class User(models.Model):
-    pseudo = models.CharField(max_length=50)
+    username = models.CharField(max_length=50)
     password = models.CharField(max_length=50)
     email = models.EmailField()
     date_inscription = models.DateTimeField('date d\'inscription', null=True, blank=True)

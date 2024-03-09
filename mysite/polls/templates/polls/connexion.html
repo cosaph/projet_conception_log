@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'polls/style.css' %}">
+</head>
+<body>
+    <h1>Page de Connexion UwU</h1>
+    <form id="login-form" method="post" action="{% url 'connexion' %}">
+        {% csrf_token %}
+        <div>
+            <label for="username">Nom d'utilisateur ou adresse e-mail :</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div>
+            <label for="password">Mot de passe :</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div>
+            <input type="submit" value="Se connecter">
+        </div>
+    </form>
+    <div id="message"></div>  <!-- Nouvel élément pour afficher le message -->
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#login-form').submit(function(event) {
+                event.preventDefault();
+
+                var formData = {
+                    username: $('#username').val(),
+                    password: $('#password').val(),
+                    csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val()
+                };
+
+                $.ajax({
+                    url: '{% url 'connexion' %}', // Remplacez par l'URL de votre endpoint de connexion
+                    type: 'POST',
+                    data: formData,
+                    success: function(response) {
+                        // Authentification réussie - afficher un message de succès
+                        $('#message').text('Connexion réussie !');
+                    },
+                    error: function(xhr, textStatus, error) {
+                        // Authentification échouée - afficher un message d'erreur
+                        $('#message').text('Erreur de connexion. Veuillez vérifier vos informations.');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -20,6 +20,6 @@ urlpatterns = [
     path("", views.index, name="index"),
     # include result.html
     path('result', views.result, name='result'),
-    
+    path('connexion', views.connexion, name='connexion'),
     path('register', views.register, name='register'),
 ]

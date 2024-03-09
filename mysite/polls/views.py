@@ -27,6 +27,10 @@ from dateutil.relativedelta import relativedelta
 from django.shortcuts import redirect
 import urllib.parse
 from .forms import UserForm
+from django.contrib.auth import authenticate, login
+from django.shortcuts import render, redirect
+from .forms import LoginForm
+from .models import User
 
 #### ----- Views ----- ####
 
@@ -82,7 +86,7 @@ def register(request):
             user = form.save(commit=False)
             # # Vous pouvez effectuer d'autres opérations ici avant de sauvegarder
             # appel de fonction pour traiter l'user (dont le hash)
-            print(user.pseudo,user.password, user.email)
+            print(user.username,user.password, user.email)
             user.save()
             return HttpResponse('Account created')
     else:
@@ -90,3 +94,24 @@ def register(request):
         if 'submitted' in request.GET:
             submitted = True
     return render(request, 'polls/register.html', {'form': form})
+
+from django.contrib.auth.hashers import check_password
+
+def connexion(request):
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            try:
+                user = User.objects.get(username=username)
+                if check_password(password, user.password):
+                    login(request, user)
+                    return redirect('index')  # Rediriger vers la page souhaitée après la connexion
+                else:
+                    form.add_error(None, 'Invalid username or password')
+            except User.DoesNotExist:
+                form.add_error(None, 'Invalid username or password')
+    else:
+        form = LoginForm()
+    return render(request, 'polls/connexion.html', {'form': form})
