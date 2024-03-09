@@ -31,6 +31,7 @@ from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from .forms import LoginForm
 from .models import User
+from django.contrib.auth.hashers import check_password
 
 #### ----- Views ----- ####
 
@@ -95,7 +96,7 @@ def register(request):
             submitted = True
     return render(request, 'polls/register.html', {'form': form})
 
-from django.contrib.auth.hashers import check_password
+
 
 def connexion(request):
     if request.method == 'POST':
@@ -105,13 +106,14 @@ def connexion(request):
             password = form.cleaned_data['password']
             try:
                 user = User.objects.get(username=username)
+                print('user = ', user)
                 if check_password(password, user.password):
                     login(request, user)
                     return redirect('index')  # Rediriger vers la page souhaitée après la connexion
                 else:
                     form.add_error(None, 'Invalid username or password')
             except User.DoesNotExist:
-                form.add_error(None, 'Invalid username or password')
+                return HttpResponse(401)
     else:
         form = LoginForm()
     return render(request, 'polls/connexion.html', {'form': form})

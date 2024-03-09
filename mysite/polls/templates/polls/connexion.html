@@ -6,7 +6,7 @@
 </head>
 <body>
     <h1>Page de Connexion UwU</h1>
-    <form id="login-form" method="post" action="{% url 'connexion' %}">
+    <!-- <form id="login-form" method="post" action="{% url 'connexion' %}">
         {% csrf_token %}
         <div>
             <label for="username">Nom d'utilisateur ou adresse e-mail :</label>
@@ -19,6 +19,11 @@
         <div>
             <input type="submit" value="Se connecter">
         </div>
+    </form> -->
+    <form method="post" action="{% url 'connexion' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Login</button>
     </form>
     <div id="message"></div>  <!-- Nouvel élément pour afficher le message -->
 
@@ -35,7 +40,7 @@
                 };
 
                 $.ajax({
-                    url: '{% url 'connexion' %}', // Remplacez par l'URL de votre endpoint de connexion
+                    url: '{% url 'connexion' %}',
                     type: 'POST',
                     data: formData,
                     success: function(response) {

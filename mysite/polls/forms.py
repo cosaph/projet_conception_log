@@ -8,6 +8,5 @@ class UserForm(forms.ModelForm):
         fields = ['username', 'password', 'email']
 
 class LoginForm(forms.Form):
-    class Meta:
-        username = forms.CharField(label='Nom d\'utilisateur ou adresse e-mail')
-        password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    username = forms.CharField(label='Nom d\'utilisateur ou adresse e-mail')
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
