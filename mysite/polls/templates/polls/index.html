@@ -21,39 +21,11 @@
     <h1 class="typo-h1 text-white max-w-[530px]"><span class="text-dark-blue">Runner,</span><br>run the world</h1>
 
     <header>
+        
 
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script>
-            $(document).ready(function() {
-                $('select[name="ville"]').change(function() { // Modification de 'region' à 'ville'
-                    var ville = $(this).val(); // Récupérer la valeur sélectionnée du menu déroulant
-                    var minDistance = $('input[name="minDistance"]').val();
-                    var maxDistance = $('input[name="maxDistance"]').val();
-                    var elevation =$('input[name="elevation"]').val();
-        
-                    $.ajax({
-                        url: '/polls/',
-                        data: {
-                            ville: ville,
-                            minDistance: minDistance,
-                            maxDistance: maxDistance,
-                            elevation: elevation
-                        },
-                        success: function(response) {
-                            $('#results').html(response);
-                        }
-                    });
-                });
-        
-                $('form').submit(function(event) {
-                    event.preventDefault();
-                });
-            });
-        </script>
-    <body>
-        <form>
+        <form action="" method="post">
             <center>
-                <select name="ville" class="bg-dark-blue text-white p-2 rounded-md" style="font-size: 0.8rem;">
+            <select name="ville" class="bg-dark-blue text-white p-2 rounded-md" style="font-size: 0.8rem;">
                 <option value="auvergne-rhone-alpes">Auvergne-Rhône-Alpes</option>
                 <option value="bourgogne-franche-comte">Bourgogne-Franche-Comté</option>
                 <option value="bretagne">Bretagne</option>
@@ -69,26 +41,12 @@
                 <option value="normandie">Normandie</option>
             </select>
             
-
-
-            <!-- <input type="range" name="distance" min="0" max="300" value="0" class="bg-white p-2 rounded-md">
-            <span id="distanceValue">0 km</span> -->
+            <input type="text" name="minDistance" placeholder="Minimum Distance" class="bg-dark-blue text-white p-2 rounded-md" style="font-size: 0.6rem;">
+            <input type="text" name="maxDistance" placeholder="Maximum Distance" class="bg-dark-blue text-white p-2 rounded-md" style="font-size: 0.6rem;">
             
-            <input type="text" name="minDistance" placeholder="Minimum Distance" class="bg-dark-blue text-white p-2 rounded-md", style="font-size: 0.6rem;">
-            <input type="text" name="maxDistance" placeholder="Maximum Distance" class="bg-dark-blue text-white p-2 rounded-md", style="font-size: 0.6rem;">
-            
-            <a href="result.html" class="bg-dark-blue text-white px-4 py-2 rounded-md" style="font-size: 14px;">
+            <button type="submit" class="bg-dark-blue text-white px-4 py-2 rounded-md" style="font-size: 14px;">
                 Run
-            </a>
-<!--             <marquee width="100%" scrollamount="2" scrolldelay="10"> 
-
-                <img src="http://www.chiny.me/images/footerlogo.png">
-                <img src="http://www.chiny.me/images/footerlogo.png">
-                <img src="http://www.chiny.me/images/footerlogo.png">
-             </marquee>  -->
-
-<!--             <center id="results">
-            </center> -->
+            </button>
         </form>
         </body>
     </html>
