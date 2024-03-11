@@ -1,0 +1,17 @@
+<h1>Ma liste</h1>
+
+<ul>
+  {% for item in items %}
+    <li>{{ item.content }}</li>
+    <form method="post" action="{% url 'delete_item' item.id %}">
+      {% csrf_token %}
+      <button type="submit">Supprimer</button>
+    </form>
+  {% endfor %}
+</ul>
+
+<form method="POST" action="{% url 'list' %}">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Ajouter</button>
+</form>

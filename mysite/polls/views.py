@@ -35,6 +35,10 @@ from django.shortcuts import redirect
 from django.urls import reverse
 from django.views.decorators.http import require_POST
 from django.contrib.auth.forms import UserCreationForm
+from .models import ListItem
+from .forms import ListItemForm
+from django.shortcuts import get_object_or_404
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -117,6 +121,7 @@ liste_elements = [url_trail + element for element in image_urls]
 print(liste_elements) """
 
 @require_POST
+@login_required
 def logout_view(request):
     logout(request)
     return redirect(reverse('index'))
@@ -131,3 +136,35 @@ def signup_view(request):
     else:
         form = UserCreationForm()
     return render(request, 'signup.html', {'form': form})
+
+@login_required
+def list_view(request):
+    user = request.user
+    items = ListItem.objects.filter(user=user)
+
+    if request.method == 'POST':
+        form = ListItemForm(request.POST)
+        if form.is_valid():
+            form.instance.user = user
+            form.save()
+            return redirect('list')
+    else:
+        form = ListItemForm()
+
+    context = {
+        'items': items,
+        'form': form
+    }
+
+    return render(request, 'list.html', context)
+
+@login_required
+def add_item(request):
+    # Logique pour l'ajout d'un élément
+    return redirect('list')  # Remplacez 'list' par le nom de la vue correspondant à votre liste d'éléments
+
+@login_required
+def delete_item_view(request, item_id):
+    item = ListItem.objects.get(id=item_id)
+    item.delete()
+    return redirect('list')

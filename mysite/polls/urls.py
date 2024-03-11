@@ -14,7 +14,7 @@
 from django.urls import path
 from . import views
 from django.contrib.auth import views as auth_views
-from django.contrib.auth.views import LogoutView
+from .views import list_view, delete_item_view, add_item
 
 urlpatterns = [
     # ex: /polls/
@@ -24,4 +24,7 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(), name='login'),
     path('logout/', views.logout_view, name='logout'),
     path('signup/', views.signup_view, name='signup'),
+    path('list/', list_view, name='list'),
+    path('add_item/', add_item, name='add_item'),
+    path('list/delete/<int:item_id>/', delete_item_view, name='delete_item')
 ]
