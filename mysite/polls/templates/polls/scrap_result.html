@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Résultats du Scraping</title>
+</head>
+<body>
+    <h1>Résultats du Scraping</h1>
+    <div>
+        {% for event in scraped_data %}
+            <div>
+                <h2>{{ event.title }}</h2>
+                <p>Lieu : {{ event.city }}</p>
+                <img src="{{ event.img_url }}" alt="Image" style="width: 100px; height: auto;">
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
