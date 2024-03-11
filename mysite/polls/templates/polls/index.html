@@ -11,8 +11,11 @@
     </div>
     <div style="position: absolute; top: 20px; right: 10px;">
         {% if user.is_authenticated %}
-            <a href="{% url 'logout' %}" class="bg-dark-blue text-white p-2 rounded-md" style="font-size: 0.9rem;">Déconnexion</a>
-        {% endif %}
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="bg-dark-blue text-white p-2 rounded-md" style="font-size: 0.9rem;">Déconnexion</button>
+        </form>
+    {% endif %}
     </div>
     <h1 class="typo-h1 text-white max-w-[530px]"><span class="text-dark-blue">Runner,</span><br>run the world</h1>
 

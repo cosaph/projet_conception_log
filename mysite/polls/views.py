@@ -118,4 +118,4 @@ print(liste_elements) """
 @require_POST
 def logout_view(request):
     logout(request)
-    return redirect(reverse('login'))
+    return redirect(reverse('index'))
