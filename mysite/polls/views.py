@@ -34,6 +34,7 @@ from django.contrib.auth import logout
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.views.decorators.http import require_POST
+from django.contrib.auth.forms import UserCreationForm
 
 
 
@@ -119,3 +120,14 @@ print(liste_elements) """
 def logout_view(request):
     logout(request)
     return redirect(reverse('index'))
+
+
+def signup_view(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('login')  # Redirige vers la page de connexion après l'inscription réussie
+    else:
+        form = UserCreationForm()
+    return render(request, 'signup.html', {'form': form})
