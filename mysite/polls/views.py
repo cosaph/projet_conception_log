@@ -28,6 +28,12 @@ from django.shortcuts import redirect
 import urllib.parse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from django.contrib.auth.views import LogoutView
+from django.urls import reverse_lazy
+from django.contrib.auth import logout
+from django.shortcuts import redirect
+from django.urls import reverse
+from django.views.decorators.http import require_POST
 
 
 
@@ -35,6 +41,7 @@ from django.shortcuts import render
 
 def index(request):
     template = loader.get_template("polls/index.html")
+
     context = {}
     return HttpResponse(template.render(context, request))
 
@@ -107,3 +114,8 @@ url_trail = "https://www.runtrail.fr/"
 liste_elements = [url_trail + element for element in image_urls]
 
 print(liste_elements) """
+
+@require_POST
+def logout_view(request):
+    logout(request)
+    return redirect(reverse('login'))
