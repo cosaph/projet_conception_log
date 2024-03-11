@@ -11,7 +11,7 @@ from django.contrib.auth.models import AbstractUser
 L'idée ici c'est qu'on va créer une database (on bosse avec sql lite)
 pour notre futur site.
 On a besoin d'une  table user (username, mdp (chiffré), email, date d'inscription)
-On aura besoin d'une table pour qu'un user est une liste d'envie de ses courses à pieds préférées
+On aura besoin d'une table pour qu'un user ait une liste d'envie de ses courses à pieds préférées
 
 '''
 
