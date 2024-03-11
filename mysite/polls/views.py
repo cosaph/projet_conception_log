@@ -6,7 +6,7 @@
 #    By: ccottet <ccottet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/08 09:14:40 by ccottet           #+#    #+#              #
-#    Updated: 2024/03/10 21:38:11 by ccottet          ###   ########.fr        #
+#    Updated: 2024/03/11 14:18:11 by ccottet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ def scrap(request):
     base_url = "https://www.runtrail.fr/events/search"
     results = []
     results2 = []
+    results3 = []
 
     for page in range(1, 6):
         query_params = {'region': ville, 'distance': f'{min_distance};{max_distance}', 'country': 'FR', 'page': page}
@@ -51,6 +52,14 @@ def scrap(request):
         soup = BeautifulSoup(response.text, 'html.parser')
         a_elements = soup.find_all('a', class_="text-dark")
         i_elements = soup.find_all('span', class_="city pt-2")
+        img_tags = soup.find_all('img', class_="img-fluid")
+        image_urls = []
+        for img in img_tags:
+            src = img.get('data-src')
+            if src:
+                image_urls.append(src)
+                results3 = [base_url + element for element in image_urls]
+
 
         results += [a.text for a in a_elements]
         results2 += [i.text for i in i_elements]
@@ -58,11 +67,12 @@ def scrap(request):
     # Generate HTML table
     table_html = '<table>'
     table_html += '<tr><th>Title</th><th>Lieu</th></tr>'
-    for result, result2 in zip(results, results2):
-        table_html += f'<tr><td>{result}</td><td>{result2}</td></tr>'
+    for result, result2, result3 in zip(results, results2, results3):
+        table_html += f'<tr><td>{result}</td><td>{result2}</td><td>{result3}</td></tr>'
     table_html += '</table>'
-
     return table_html
+
+
 
 def result(request):
     template = loader.get_template("polls/result.html")
@@ -70,7 +80,7 @@ def result(request):
     context = {'table_html': table_html}
     return HttpResponse(template.render(context, request))
 
-# -- fonction test scrap image -- #
+""" # -- fonction test scrap image -- #
 
 url = "https://www.runtrail.fr/events/search?region=bretagne&elevation=50;500&country=FR&page=2"
 response = requests.get(url)
@@ -87,4 +97,4 @@ url_trail = "https://www.runtrail.fr/"
 
 liste_elements = [url_trail + element for element in image_urls]
 
-print(liste_elements)
+print(liste_elements) """
