@@ -158,12 +158,6 @@ liste_elements = [url_trail + element for element in image_urls]
 
 print(liste_elements) """
 
-@require_POST
-@login_required
-def logout_view(request):
-    logout(request)
-    return redirect(reverse('index'))
-
 
 def signup_view(request):
     if request.method == 'POST':
@@ -174,6 +168,24 @@ def signup_view(request):
     else:
         form = UserCreationForm()
     return render(request, 'signup.html', {'form': form})
+
+
+@login_required
+def delete_account(request):
+    if request.method == 'POST':
+        user = request.user
+        user.delete()
+        logout(request)
+        return redirect('index')
+    return render(request, 'delete_account.html')
+
+@require_POST
+@login_required
+def logout_view(request):
+    logout(request)
+    return redirect(reverse('index'))
+
+
 
 @login_required
 def list_view(request):

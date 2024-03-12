@@ -13,8 +13,7 @@
         {% if user.is_authenticated %}
             <form action="{% url 'logout' %}" method="post">
                 {% csrf_token %}
-                <button type="submit" class="bg-dark-blue text-white p-2 rounded-md" style="font-size: 0.9rem;">Déconnexion</button>
-                <a href="{% url 'list' %}" class="bg-dark-blue text-white p-2 rounded-md" style="font-size: 0.9rem;">Liste de courses</a>
+                <a href="{% url 'list' %}" class="bg-dark-blue text-white p-2 rounded-md" style="font-size: 1.2rem; text-decoration: none; font-weight: bold;">Liste de courses</a>
             </form>
         {% else %}
             <a href="{% url 'login' %}" class="bg-dark-blue text-white p-2 rounded-md" style="font-size: 0.9rem;">Connexion</a>
@@ -49,5 +48,16 @@
             </button>
         </form>
     </header>
+    <div style="position: absolute; bottom: 20px; right: 10px;">
+        {% if user.is_authenticated %}
+            <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="bg-dark-blue text-white p-1 rounded-md" style="font-size: 0.7rem;">Déconnexion</button>
+            </form>
+            <form action="{% url 'delete_account' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="bg-green-600 text-white p-1 rounded-md" style="font-size: 0.7rem;">Supprimer le compte</button>
+            </form>
+        {% endif %}
+    </div>
 </body>
-</html>
