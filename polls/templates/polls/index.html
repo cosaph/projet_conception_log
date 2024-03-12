@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'polls/style.css' %}">
+</head>
+    <div class="banner-image">
+        <img src="https://cdn.lepape-info.com/media/2012/06/2-2017-TDS-Michel-Lanne-photo-Damien-Rosso-www.droz-photo.com_.jpg" alt="Mountain Landscape" width=1600 height=1000>
+    </div>
+    <div style="position: absolute; top: 20px; right: 10px;">
+        <a href="inscription.html" class="bg-dark-blue text-white p-2 rounded-md", style="font-size: 0.9rem;">Inscription</a>
+        <span style="margin: 0 3px;"></span>
+        <a href="connexion.html" class="bg-dark-blue text-white p-2 rounded-md", style="font-size: 0.9rem;">Connexion</a>
+    </div>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<body>
+    <!--  titre -->
+
+    <h1 class="typo-h1 text-white max-w-[530px]"><span class="text-dark-blue">Runner,</span><br>run the world</h1>
+
+    <header>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('select[name="ville"]').change(function() { // Modification de 'region' à 'ville'
+                    var ville = $(this).val(); // Récupérer la valeur sélectionnée du menu déroulant
+                    var minDistance = $('input[name="minDistance"]').val();
+                    var maxDistance = $('input[name="maxDistance"]').val();
+                    var elevation =$('input[name="elevation"]').val();
+        
+                    $.ajax({
+                        url: '/polls/',
+                        data: {
+                            ville: ville,
+                            minDistance: minDistance,
+                            maxDistance: maxDistance,
+                            elevation: elevation
+                        },
+                        success: function(response) {
+                            $('#results').html(response);
+                        }
+                    });
+                });
+        
+                $('form').submit(function(event) {
+                    event.preventDefault();
+                });
+            });
+        </script>
+    <body>
+        <form>
+            <center>
+                <select name="ville" class="bg-dark-blue text-white p-2 rounded-md" style="font-size: 0.8rem;">
+                <option value="auvergne-rhone-alpes">Auvergne-Rhône-Alpes</option>
+                <option value="bourgogne-franche-comte">Bourgogne-Franche-Comté</option>
+                <option value="bretagne">Bretagne</option>
+                <option value="centre-val-de-loire">Centre-Val de Loire</option>
+                <option value="corse">Corse</option>
+                <option value="grand-est">Grand Est</option>
+                <option value="guadeloupe">Guadeloupe</option>
+                <option value="guyane">Guyane</option>
+                <option value="hauts-de-france">Hauts-de-France</option>
+                <option value="la-reunion">La Réunion</option>
+                <option value="martinique">Martinique</option>
+                <option value="mayotte">Mayotte</option>
+                <option value="normandie">Normandie</option>
+            </select>
+            
+
+
+            <!-- <input type="range" name="distance" min="0" max="300" value="0" class="bg-white p-2 rounded-md">
+            <span id="distanceValue">0 km</span> -->
+            
+            <input type="text" name="minDistance" placeholder="Minimum Distance" class="bg-dark-blue text-white p-2 rounded-md", style="font-size: 0.6rem;">
+            <input type="text" name="maxDistance" placeholder="Maximum Distance" class="bg-dark-blue text-white p-2 rounded-md", style="font-size: 0.6rem;">
+            
+            <a href="result.html" class="bg-dark-blue text-white px-4 py-2 rounded-md" style="font-size: 14px;">
+                Run
+            </a>
+
+<!--             <center id="results">
+            </center> -->
+        </form>
+        </body>
+    </html>
+
