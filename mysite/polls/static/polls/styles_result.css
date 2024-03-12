@@ -6,7 +6,7 @@
 /*   By: ccottet <ccottet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:11:13 by ccottet           #+#    #+#             */
-/*   Updated: 2024/03/08 12:36:17 by ccottet          ###   ########.fr       */
+/*   Updated: 2024/03/12 12:03:42 by ccottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,6 @@
   }
 
 
-body {
-    margin: 0; /* Supprime les marges par défaut du corps de la page */
-    padding: 0; /* Supprime les espaces de remplissage par défaut du corps de la page */
-    overflow: hidden; /* Supprime la barre de défilement horizontale */
-  }
-
 #full-image {
     position: fixed; /* Positionne l'image de façon fixe par rapport à la fenêtre du navigateur */
     top: 0; /* Positionne l'image en haut de la page */
@@ -44,3 +38,53 @@ body {
     object-fit: cover; /* Ajuste la taille de l'image pour remplir complètement son conteneur */
     z-index: -1; /* Place l'image en arrière-plan */
   }
+.result-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.result-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+    border: 1px solid white;
+    padding: 10px;
+}
+
+.result-item h2,
+.result-item p {
+    text-align: center;
+}
+
+.result-item .star {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    width: 20px;
+    height: 20px;
+    background-image: url('https://cdn-icons-png.flaticon.com/512/2696/2696313.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    cursor: pointer;
+}
+
+.scrollable-container {
+    overflow-y: scroll;
+    max-height: 500px;
+}
+</styl
+
+.typo-titre {
+    font-size: 1.5rem;
+    line-height: 1.5;
+    font-weight: bold;
+}
+
+.typo-lieu {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    font-weight: bold;
+}

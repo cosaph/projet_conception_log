@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'polls/styles_result.css' %}">
+    <title>Résultats du Scraping</title>
+</head>
+<body>
+    <div class="body">
+        <img id="full-image" src="https://images.ctfassets.net/9olkiac82a1q/3dfjcw2A3j5w3CdM3YsznY/61aaec4ec86830b04781d8da077051d3/wide_UTMB22__AlexisBerg_8413.jpg?fm=webp&amp;w=4000" width="1500" height="495">
+        <h1 class="typo-h1"><span class="text-dark-blue">Résultats</span> Scrapping</h1>
+    </div>   
+
+    <div class="scrollable-container">
+        <div class="result-container">
+            {% for event in scraped_data %}
+                <div class="result-item">
+                    <h2 class="typo-body bg-dark-blue text-white p-2 rounded-md">{{ event.title }}</h2>
+                    <p class="typo-body bg-dark-blue text-white p-2 rounded-md">Lieu : {{ event.city }}</p>
+                    <img src="{{ event.img_url }}" alt="Image" style="width: 100px; height: auto;">
+                    <a href="#" class="star" title="Ajouter aux favoris"></a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

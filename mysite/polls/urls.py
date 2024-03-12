@@ -6,7 +6,7 @@
 #    By: ccottet <ccottet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/14 15:43:56 by ccottet           #+#    #+#              #
-#    Updated: 2024/03/08 10:06:22 by ccottet          ###   ########.fr        #
+#    Updated: 2024/03/12 13:11:44 by ccottet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,4 +27,6 @@ urlpatterns = [
     path('list/', list_view, name='list'),
     path('add_item/', add_item, name='add_item'),
     path('list/delete/<int:item_id>/', delete_item_view, name='delete_item')
+    # path pour récupérer les infos utiles au scraping
+    path('submit-form', views.submit_form, name='submit_form'),
 ]
