@@ -15,9 +15,10 @@
         <div class="result-container">
             {% for event in scraped_data %}
                 <div class="result-item">
-                    <h2 class="bg-dark-blue text-white p-2 rounded-md">{{ event.title }}</h2>
-                    <p class="bg-dark-blue text-white p-2 rounded-md">Lieu : {{ event.city }}</p>
+                    <h2 class="typo-body bg-dark-blue text-white p-2 rounded-md">{{ event.title }}</h2>
+                    <p class="typo-body bg-dark-blue text-white p-2 rounded-md">Lieu : {{ event.city }}</p>
                     <img src="{{ event.img_url }}" alt="Image" style="width: 100px; height: auto;">
+                    <a href="#" class="star" title="Ajouter aux favoris"></a>
                 </div>
             {% endfor %}
         </div>
