@@ -15,7 +15,6 @@
                 {% csrf_token %}
                 <button type="submit" class="bg-dark-blue text-white p-2 rounded-md" style="font-size: 0.9rem;">Déconnexion</button>
                 <a href="{% url 'list' %}" class="bg-dark-blue text-white p-2 rounded-md" style="font-size: 0.9rem;">Liste de courses</a>
-                <a href="{% url 'add_item' %}" class="bg-dark-blue text-white p-2 rounded-md" style="font-size: 0.9rem;">Liste de courses</a>
             </form>
         {% else %}
             <a href="{% url 'login' %}" class="bg-dark-blue text-white p-2 rounded-md" style="font-size: 0.9rem;">Connexion</a>
