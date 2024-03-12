@@ -1,10 +1,83 @@
-{% block title %}Inscription{% endblock %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('http://images7.alphacoders.com/420/420361.jpg'); /* Ajoutez le chemin de votre image */
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: flex-start; /* Déplace le contenu vers le coin supérieur gauche */
+            align-items: flex-start; /* Déplace le contenu vers le coin supérieur gauche */
+        }
 
-{% block content %}
-  <h2>Inscription</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">S'inscrire</button>
-  </form>
-{% endblock %}
+        .registration-container {
+            background-color: #dfe6e9; /* Couleur de fond pour le cadre d'inscription */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            width: 300px;
+            text-align: center;
+            margin-top: 20px; /* Ajoute un espace en haut pour améliorer l'apparence */
+            margin-left: 20px; /* Ajoute un espace à gauche pour améliorer l'apparence */
+        }
+
+        .registration-container h2 {
+            color: #2d3436; /* Couleur du texte */
+            display: none; /* Rend le texte invisible */
+        }
+
+        .registration-form {
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #57606f; /* Couleur du texte */
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #b2bec3; /* Couleur de bordure */
+            border-radius: 6px;
+            background-color: #ecf0f1;
+        }
+
+        .form-group button {
+            background-color: #3498db; /* Couleur du bouton */
+            color: #fff;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+  <div class="registration-container">
+    <h2>{% block title %}Inscription{% endblock %}</h2>
+    <form class="registration-form" method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <div class="form-group">
+          <button type="submit">S'inscrire</button>
+      </div>
+    </form> 
+  </div>
+
+</body>
+</html>
