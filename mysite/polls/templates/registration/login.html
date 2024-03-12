@@ -1,10 +1,91 @@
-{% block title %}Login{% endblock %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://wallpaperaccess.com/full/2777172.jpg'); /* Ajoutez le chemin de votre image */
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: flex-end; /* Déplace le contenu vers le coin supérieur droit */
+            align-items: flex-start; /* Déplace le contenu vers le coin supérieur droit */
+        }
 
-{% block content %}
-  <h2>Login</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Login</button>
-  </form>
-{% endblock %}  
+        .login-container {
+            background-color: #dfe6e9; /* Couleur de fond pour le cadre de connexion */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            width: 300px;
+            text-align: center;
+            margin-top: 20px; /* Ajoute un espace en haut pour améliorer l'apparence */
+            margin-right: 20px; /* Ajoute un espace à droite pour améliorer l'apparence */
+        }
+
+        .login-container h2 {
+            color: #2d3436; /* Couleur du texte */
+        }
+
+        .login-form {
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #57606f; /* Couleur du texte */
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #b2bec3; /* Couleur de bordure */
+            border-radius: 6px;
+            background-color: #ecf0f1;
+        }
+
+        .form-group button {
+            background-color: #3498db; /* Couleur du bouton */
+            color: #fff;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-container">
+    <h2>Connexion</h2>
+    <form method="post">
+      {% csrf_token %}
+      <div class="form-group">
+          <label for="username">Nom d'utilisateur :</label>
+          <input type="text" id="username" name="username" required>
+      </div>
+      <div class="form-group">
+          <label for="password">Mot de passe :</label>
+          <input type="password" id="password" name="password" required>
+      </div>
+      <div class="form-group">
+          <button type="submit">Se Connecter</button>
+      </div>
+    </form> 
+   
+</div>
+
+</body>
+</html>
