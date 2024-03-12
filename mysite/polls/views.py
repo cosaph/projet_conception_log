@@ -6,7 +6,7 @@
 #    By: ccottet <ccottet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/08 09:14:40 by ccottet           #+#    #+#              #
-#    Updated: 2024/03/11 14:56:08 by ccottet          ###   ########.fr        #
+#    Updated: 2024/03/12 11:04:30 by ccottet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -104,7 +104,8 @@ def scrap(request):
             image_urls = [img.get('data-src') for img in img_tags if img.get('data-src')]
 
             for title, city, img_url in zip(a_elements, i_elements, image_urls):
-                scraped_data.append({'title': title.text, 'city': city.text, 'img_url': img_url})
+                image_urls = "https://www.runtrail.fr/" + img_url
+                scraped_data.append({'title': title.text, 'city': city.text, 'img_url': image_urls})
 
         return scraped_data  # Retourne les données au lieu de HTML
 

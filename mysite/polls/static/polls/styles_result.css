@@ -6,7 +6,7 @@
 /*   By: ccottet <ccottet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:11:13 by ccottet           #+#    #+#             */
-/*   Updated: 2024/03/08 12:36:17 by ccottet          ###   ########.fr       */
+/*   Updated: 2024/03/12 11:50:35 by ccottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,6 @@
   }
 
 
-body {
-    margin: 0; /* Supprime les marges par défaut du corps de la page */
-    padding: 0; /* Supprime les espaces de remplissage par défaut du corps de la page */
-    overflow: hidden; /* Supprime la barre de défilement horizontale */
-  }
-
 #full-image {
     position: fixed; /* Positionne l'image de façon fixe par rapport à la fenêtre du navigateur */
     top: 0; /* Positionne l'image en haut de la page */
@@ -44,3 +38,25 @@ body {
     object-fit: cover; /* Ajuste la taille de l'image pour remplir complètement son conteneur */
     z-index: -1; /* Place l'image en arrière-plan */
   }
+  .result-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.result-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+}
+
+.result-item h2,
+.result-item p {
+    text-align: center;
+}
+
+.scrollable-container {
+    overflow-y: scroll;
+    max-height: 500px;
+}
