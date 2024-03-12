@@ -20,7 +20,6 @@ urlpatterns = [
     path("", views.index, name="index"),
     # include result.html
     path('result.html', views.result, name='result'),
-    
-    # ex: /polls/5/
-
+    # path pour récupérer les infos utiles au scraping
+    path('submit-form', views.submit_form, name='submit_form'),
 ]
