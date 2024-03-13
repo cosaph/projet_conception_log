@@ -14,23 +14,23 @@
             padding: 0;
             height: 100vh;
             display: flex;
-            justify-content: flex-end; /* Déplace le contenu vers le coin supérieur droit */
-            align-items: flex-start; /* Déplace le contenu vers le coin supérieur droit */
+            justify-content: center; /* Centre le contenu horizontalement */
+            align-items: center; /* Centre le contenu verticalement */
         }
 
         .login-container {
-            background-color: #dfe6e9; /* Couleur de fond pour le cadre de connexion */
+            background-color: #192f3f; /* Couleur de fond pour le cadre de connexion */
+            color: white;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
             width: 300px;
             text-align: center;
             margin-top: 20px; /* Ajoute un espace en haut pour améliorer l'apparence */
-            margin-right: 20px; /* Ajoute un espace à droite pour améliorer l'apparence */
         }
 
         .login-container h2 {
-            color: #2d3436; /* Couleur du texte */
+            color: white; /* Couleur du texte */
         }
 
         .login-form {
@@ -44,9 +44,12 @@
         .form-group label {
             display: block;
             margin-bottom: 5px;
-            color: #57606f; /* Couleur du texte */
+            color: white; /* Couleur du texte */
         }
 
+        .rounded-md {
+            border-radius: 0.5rem;
+        }
         .form-group input {
             width: 100%;
             padding: 10px;
@@ -57,8 +60,9 @@
         }
 
         .form-group button {
-            background-color: #3498db; /* Couleur du bouton */
-            color: #fff;
+            font-family: Arial, sans-serif;
+            background-color: #fff; /* Couleur du bouton */
+            color: #192f3f;
             padding: 12px;
             border: none;
             border-radius: 6px;
@@ -68,7 +72,7 @@
 </head>
 <body>
 
-<div class="login-container">
+<div class="login-container rounded-md">
     <h2>Connexion</h2>
     <form method="post">
       {% csrf_token %}
