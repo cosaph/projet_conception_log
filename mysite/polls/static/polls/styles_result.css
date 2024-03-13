@@ -6,7 +6,7 @@
 /*   By: ccottet <ccottet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:11:13 by ccottet           #+#    #+#             */
-/*   Updated: 2024/03/12 13:13:37 by ccottet          ###   ########.fr       */
+/*   Updated: 2024/03/12 21:21:19 by ccottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@
     text-align: center;
 }
 
-.result-item .star {
+.star {
     position: absolute;
     right: 5px;
     bottom: 5px;

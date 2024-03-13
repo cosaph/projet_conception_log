@@ -6,7 +6,7 @@
 #    By: ccottet <ccottet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/08 09:14:40 by ccottet           #+#    #+#              #
-#    Updated: 2024/03/12 11:04:30 by ccottet          ###   ########.fr        #
+#    Updated: 2024/03/13 09:15:06 by ccottet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
 
 from django.views.decorators.csrf import csrf_exempt
+from .models import ListItem
 
 
 
@@ -208,10 +209,23 @@ def list_view(request):
 
     return render(request, 'list.html', context)
 
+
+
 @login_required
 def add_item(request):
-    # Logique pour l'ajout d'un élément
-    return redirect('list')  # Remplacez 'list' par le nom de la vue correspondant à votre liste d'éléments
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        city = request.POST.get('city')
+
+        # Create a new ListItem instance and save it to the database
+        item = ListItem(user=request.user, content=f"{title}, {city}")
+        item.save()
+        
+        # Pass the data as context variables to the template
+        return render(request, 'list.html', {'title': title, 'city': city})
+    
+    return HttpResponse('Invalid request')
+
 
 @login_required
 def delete_item_view(request, item_id):

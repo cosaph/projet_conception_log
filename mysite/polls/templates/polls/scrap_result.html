@@ -14,12 +14,17 @@
     <div class="scrollable-container">
         <div class="result-container">
             {% for event in scraped_data %}
-                <div class="result-item">
-                    <h2 class="typo-body bg-dark-blue text-white p-2 rounded-md">{{ event.title }}</h2>
-                    <p class="typo-body bg-dark-blue text-white p-2 rounded-md">Lieu : {{ event.city }}</p>
-                    <img src="{{ event.img_url }}" alt="Image" style="width: 100px; height: auto;">
-                    <a href="#" class="star" title="Ajouter aux favoris"></a>
-                </div>
+            <div class="result-item">
+                <h2 class="typo-body bg-dark-blue text-white p-2 rounded-md">{{ event.title }}</h2>
+                <p class="typo-body bg-dark-blue text-white p-2 rounded-md">{{ event.city }}</p>
+                <img src="{{ event.img_url }}" alt="Image" style="width: 100px; height: auto;">
+                <form action="{% url 'add_item' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="title" value="{{ event.title }}">
+                    <input type="hidden" name="city" value="{{ event.city }}">
+                    <button type="submit" class="star" title="Ajouter aux favoris"></button>
+                </form>
+            </div>
             {% endfor %}
         </div>
     </div>

@@ -1,81 +1,15 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vos couers</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      background-image: url("https://www2.u-trail.com/wp-content/uploads/2021/01/courir-la-nuit.jpg");
-      background-repeat: no-repeat;
-      background-size: cover;
-      position: relative;
-      min-height: 100vh;
-    }
-
-    h1 {
-      text-align: center;
-      font-size: 24px;
-      color: #000;
-      padding-top: 20px; /* Ajustez la marge selon vos besoins */
-    }
-    
-    ul {
-      list-style-type: none;
-      padding: 20px;
-      margin: 0;
-      background-color: #f2f2f2; /* Couleur de fond gris clair */
-      color: #000; /* Couleur de texte noire */
-      border-radius: 4px;
-    }
-    
-    li {
-      margin-bottom: 10px;
-      padding: 10px;
-      background-color: #fff;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-    }
-    
-    form.add-form {
-      text-align: center;
-      margin-top: 20px; /* Ajustez la marge selon vos besoins */
-    }
-    
-    form.add-form input[type="text"] {
-      padding: 5px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-    }
-    
-    form.add-form button {
-      background-color: #333;
-      color: #fff;
-      border: none;
-      padding: 5px 10px;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-
-    .back-button {
-      display: block;
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #333;
-      color: #fff;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 4px;
-      text-decoration: none;
-    }
-  </style>
+{% load static %}
+  <link rel="stylesheet" href="{% static 'polls/style_list.css' %}"> 
 </head>
 <body>
-  <h1>Ma liste</h1>
+  <div class="banner-image">
+    <h1 class="typo-h1 text-dark-blue max-w-[530px]">MA LISTE</h1>
+    <p class="typo-h1 text-dark-blue max-w-[530px]">{{ title }}</p>
+    <p class="typo-h1 text-dark-blue max-w-[530px]">{{ city }}</p>
+  </div> 
 
   <ul>
     {% for item in items %}
@@ -92,9 +26,11 @@
   <form method="POST" action="{% url 'list' %}" class="add-form">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Ajouter</button>
+    <input type="hidden" name="title" value="{{ title }}">
+    <input type="hidden" name="city" value="{{ city }}">
+    <button type="submit" class="bg-dark-blue text-white px-4 py-2 rounded-md" style="font-size: 14px;">Ajouter</button>
   </form>
 
-  <a href="{% url 'index' %}" class="back-button">Retour à la page index</a>
+  <a href="{% url 'index' %}" class="bg-dark-blue text-white px-4 py-2 rounded-md" style="font-size: 15px;">Retour</a>
 </body>
 </html>

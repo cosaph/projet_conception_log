@@ -1,0 +1,61 @@
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url("https://cdn.lepape-info.com/media/2012/06/2-2017-TDS-Michel-Lanne-photo-Damien-Rosso-www.droz-photo.com_.jpg");
+  background-size: cover;
+
+}
+
+.banner-image {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+ul {
+  list-style-type: none;
+  text-align: center;
+  padding: 0;
+}
+
+h1 {
+    margin-top: 50px;
+    text-align: center;
+}
+.add-form {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.bg-dark-blue {
+    background-color: #192f3f;
+  }
+  
+.text-white {
+    color: #ffffff;
+  }
+  
+  .p-2 {
+    padding: 0.5rem;
+  }
+  
+.rounded-md {
+    border-radius: 0.5rem;
+  }
+
+.text-dark-blue {
+    color: #192f3f;
+  }
+
+.px-4 {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.py-2 {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
