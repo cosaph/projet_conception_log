@@ -6,7 +6,7 @@
 /*   By: ccottet <ccottet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:11:13 by ccottet           #+#    #+#             */
-/*   Updated: 2024/03/12 21:21:19 by ccottet          ###   ########.fr       */
+/*   Updated: 2024/03/13 10:52:17 by ccottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,13 @@
 }
 
 .scrollable-container {
-    overflow-y: scroll;
-    max-height: 500px;
+    height: 100%;
+    overflow-y: auto;
 }
 
+.result-container {
+  padding: 20px;
+}
 .typo-titre {
     font-size: 1.5rem;
     line-height: 1.5;

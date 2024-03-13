@@ -3,7 +3,7 @@
 <head>
     {% load static %}
     <link rel="stylesheet" href="{% static 'polls/styles_result.css' %}">
-    <title>Résultats du Scraping</title>
+    <title>Courses Régionales</title>
 </head>
 <body>
     <div class="body">
@@ -11,7 +11,7 @@
         <h1 class="typo-h1"><span class="text-dark-blue">Résultats</span> Scrapping</h1>
     </div>   
 
-    <div class="scrollable-container">
+    <p class="scrollable-container">
         <div class="result-container">
             {% for event in scraped_data %}
             <div class="result-item">
@@ -27,6 +27,6 @@
             </div>
             {% endfor %}
         </div>
-    </div>
+    </p>
 </body>
 </html>
