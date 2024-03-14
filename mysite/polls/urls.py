@@ -29,8 +29,6 @@ from .views import list_view, delete_item_view, add_item
 urlpatterns = [
     # Page d'accueil : Affiche de le formulaire de recherche
     path("", views.index, name="index"),
-    # Page des résultats : montre les résultats du scraping
-    path('result.html', views.result, name='result'),
     # Connexion
     path('login/', auth_views.LoginView.as_view(), name='login'),
     # Déconnexion
