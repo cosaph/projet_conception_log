@@ -7,7 +7,3 @@ class ListItemForm(forms.ModelForm):
         fields = ['content']
 
 
-
-class ConnexionForm(forms.Form):
-    nom_utilisateur = forms.CharField(label="Nom d'utilisateur")
-    password = forms.CharField(label="Mot de passe", widget=forms.PasswordInput)
