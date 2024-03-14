@@ -14,7 +14,7 @@ from .views import index
 
 class IndexViewTest(TestCase):
     def test_index_view(self):
-        response = self.client.get(reverse('nom_de_votre_vue_index'))
+        response = self.client.get(reverse('index'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'polls/index.html')
 
