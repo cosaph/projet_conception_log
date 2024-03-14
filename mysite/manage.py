@@ -26,6 +26,7 @@ Pour une liste complète des commandes disponibles, utilisez:
 import os
 import sys
 
+
 def main():
     """
     Fonction principale exécutant les tâches administratives.
@@ -35,7 +36,7 @@ def main():
     une exception si Django n'est pas correctement importé, ce qui peut indiquer un problème avec
     l'installation de Django ou la configuration de l'environnement.
     """
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mysite.settings')
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mysite.settings")
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
@@ -46,5 +47,6 @@ def main():
         ) from exc
     execute_from_command_line(sys.argv)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()

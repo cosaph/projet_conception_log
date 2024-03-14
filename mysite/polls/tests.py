@@ -16,9 +16,8 @@ Par exemple, pour exécuter le test `test_signup_view` de la classe `SignupViewT
 
 from django.test import TestCase, RequestFactory
 from django.urls import reverse
-from django.contrib.auth.models import User
-from .models import ListItem
-from .views import index, scrap, signup_view
+from .views import scrap, signup_view
+
 
 class IndexViewTest(TestCase):
     """
@@ -35,9 +34,10 @@ class IndexViewTest(TestCase):
         Returns:
             - response: Objet HttpResponse de la requête HTTP.
         """
-        response = self.client.get(reverse('index'))
+        response = self.client.get(reverse("index"))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'polls/index.html')
+        self.assertTemplateUsed(response, "polls/index.html")
+
 
 class ScrapTestCase(TestCase):
     """
@@ -56,20 +56,24 @@ class ScrapTestCase(TestCase):
         Vérifie si la fonction de scraping renvoie les données attendues.
 
         Args:
-            - request: Objet HttpRequest de Django contenant les critères de recherche comme la ville, 
+            - request: Objet HttpRequest de Django contenant les critères de recherche comme la ville,
                        la distance minimale et maximale.
 
         Returns:
             - response: Liste de dictionnaires avec les données scrapées ('title', 'city', 'img_url').
         """
-        request = self.factory.post('/scrap/', {'ville': 'bretagne', 'minDistance': '10', 'maxDistance': '20'})
+        request = self.factory.post(
+            "/scrap/", {"ville": "bretagne",
+                        "minDistance": "10", "maxDistance": "20"}
+        )
         response = scrap(request)
 
         self.assertIsInstance(response, list)
 
-        expected_keys = ['title', 'city', 'img_url']
+        expected_keys = ["title", "city", "img_url"]
         for data in response:
             self.assertCountEqual(expected_keys, data.keys())
+
 
 class SignupViewTestCase(TestCase):
     """
@@ -92,8 +96,15 @@ class SignupViewTestCase(TestCase):
         Returns:
             - response: Objet HttpResponse de la redirection après l'inscription.
         """
-        request = self.factory.post('/signup/', {'username': 'testuser', 'password1': 'testpassword', 'password2': 'testpassword'})
+        request = self.factory.post(
+            "/signup/",
+            {
+                "username": "testuser",
+                "password1": "testpassword",
+                "password2": "testpassword",
+            },
+        )
         response = signup_view(request)
 
         self.assertEqual(response.status_code, 302)
-        self.assertEqual(response.url, '/polls/login/')
+        self.assertEqual(response.url, "/polls/login/")

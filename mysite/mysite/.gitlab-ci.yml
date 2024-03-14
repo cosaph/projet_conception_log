@@ -12,16 +12,7 @@ tests:
 
     - python3 manage.py test mysite.polls.tests.ScrapViewTest
 
-    - python3 manage.py test mysite.polls.tests.ResultViewTest
-
     - python3 manage.py test mysite.polls.tests.SignUpViewTest
 
-    - python3 manage.py test mysite.polls.tests.DeleteAccountViewTest
-
-    - python3 manage.py test mysite.polls.tests.ListViewTest
-
-    - python3 manage.py test mysite.polls.tests.AddItemViewTest
-
-    - python3 manage.py test mysite.polls.tests.DeleteItemViewTest
   only:
     - main

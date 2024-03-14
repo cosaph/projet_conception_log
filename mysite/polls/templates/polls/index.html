@@ -2,22 +2,28 @@
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <link rel="stylesheet" href="{% static 'polls/style.css' %}">
 </head>
+
 <body>
     <div class="banner-image">
-        <img src="https://cdn.lepape-info.com/media/2012/06/2-2017-TDS-Michel-Lanne-photo-Damien-Rosso-www.droz-photo.com_.jpg" alt="Mountain Landscape" width=1600 height=1000>
+        <img src="https://cdn.lepape-info.com/media/2012/06/2-2017-TDS-Michel-Lanne-photo-Damien-Rosso-www.droz-photo.com_.jpg"
+            alt="Mountain Landscape" width=1600 height=1000>
     </div>
     <div style="position: absolute; top: 20px; right: 10px;">
         {% if user.is_authenticated %}
-            <form action="{% url 'logout' %}" method="post">
-                {% csrf_token %}
-                <a href="{% url 'list' %}" class="bg-dark-blue text-white p-2 rounded-md" style="font-size: 0.9rem;">Liste de courses</a>
-            </form>
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <a href="{% url 'list' %}" class="bg-dark-blue text-white p-2 rounded-md" style="font-size: 0.9rem;">Liste
+                de courses</a>
+        </form>
         {% else %}
-            <a href="{% url 'login' %}" class="bg-dark-blue text-white p-2 rounded-md" style="font-size: 0.9rem;">Connexion</a>
-            <a href="{% url 'signup' %}" class="bg-dark-blue text-white p-2 rounded-md" style="font-size: 0.9rem;">Créer un compte</a>
+        <a href="{% url 'login' %}" class="bg-dark-blue text-white p-2 rounded-md"
+            style="font-size: 0.9rem;">Connexion</a>
+        <a href="{% url 'signup' %}" class="bg-dark-blue text-white p-2 rounded-md" style="font-size: 0.9rem;">Créer un
+            compte</a>
         {% endif %}
     </div>
     <h1 class="typo-h1 text-white max-w-[530px]"><span class="text-dark-blue">Runner,</span><br>run the world</h1>
@@ -25,46 +31,50 @@
     <header>
         <form action="{% url 'submit_form' %}" method="post">
             <center>
-            <select name="ville" class="bg-dark-blue text-white p-2 rounded-md" style="font-size: 0.8rem;">
-                <option value="auvergne-rhone-alpes">Auvergne-Rhône-Alpes</option>
-                <option value="bourgogne-franche-comte">Bourgogne-Franche-Comté</option>
-                <option value="bretagne">Bretagne</option>
-                <option value="centre-val-de-loire">Centre-Val de Loire</option>
-                <option value="corse">Corse</option>
-                <option value="grand-est">Grand Est</option>
-                <option value="guadeloupe">Guadeloupe</option>
-                <option value="guyane">Guyane</option>
-                <option value="hauts-de-france">Hauts-de-France</option>
-                <option value="la-reunion">La Réunion</option>
-                <option value="martinique">Martinique</option>
-                <option value="mayotte">Mayotte</option>
-                <option value="normandie">Normandie</option>
-                <option value="ile-de-france">Ile-de-France</option>
-                <option value="nouvelle-aquitaine">Nouvelle-Aquitaine</option>
-                <option value="occitanie">Occitanie</option>
-                <option value="pays-de-la-loire">Pays-de-la-Loire</option>
-                <option value="provence-alpes-cote-d-azur">Nouvelle-Aquitaine</option>
-                
-                
-            </select>
-            <input type="text" name="minDistance" placeholder="Minimum Distance" class="bg-dark-blue text-white p-2 rounded-md" style="font-size: 0.6rem;">
-            <input type="text" name="maxDistance" placeholder="Maximum Distance" class="bg-dark-blue text-white p-2 rounded-md" style="font-size: 0.6rem;">
-            
-            <button type="submit" class="bg-dark-blue text-white px-4 py-2 rounded-md" style="font-size: 14px;">
-                Run
-            </button>
+                <select name="ville" class="bg-dark-blue text-white p-2 rounded-md" style="font-size: 0.8rem;">
+                    <option value="auvergne-rhone-alpes">Auvergne-Rhône-Alpes</option>
+                    <option value="bourgogne-franche-comte">Bourgogne-Franche-Comté</option>
+                    <option value="bretagne">Bretagne</option>
+                    <option value="centre-val-de-loire">Centre-Val de Loire</option>
+                    <option value="corse">Corse</option>
+                    <option value="grand-est">Grand Est</option>
+                    <option value="guadeloupe">Guadeloupe</option>
+                    <option value="guyane">Guyane</option>
+                    <option value="hauts-de-france">Hauts-de-France</option>
+                    <option value="la-reunion">La Réunion</option>
+                    <option value="martinique">Martinique</option>
+                    <option value="mayotte">Mayotte</option>
+                    <option value="normandie">Normandie</option>
+                    <option value="ile-de-france">Ile-de-France</option>
+                    <option value="nouvelle-aquitaine">Nouvelle-Aquitaine</option>
+                    <option value="occitanie">Occitanie</option>
+                    <option value="pays-de-la-loire">Pays-de-la-Loire</option>
+                    <option value="provence-alpes-cote-d-azur">Nouvelle-Aquitaine</option>
+
+
+                </select>
+                <input type="text" name="minDistance" placeholder="Minimum Distance"
+                    class="bg-dark-blue text-white p-2 rounded-md" style="font-size: 0.6rem;">
+                <input type="text" name="maxDistance" placeholder="Maximum Distance"
+                    class="bg-dark-blue text-white p-2 rounded-md" style="font-size: 0.6rem;">
+
+                <button type="submit" class="bg-dark-blue text-white px-4 py-2 rounded-md" style="font-size: 14px;">
+                    Run
+                </button>
         </form>
     </header>
     <div style="position: absolute; bottom: 20px; right: 10px;">
         {% if user.is_authenticated %}
-            <form action="{% url 'logout' %}" method="post">
-                {% csrf_token %}
-                <button type="submit" class="bg-dark-blue text-white p-1 rounded-md" style="font-size: 0.7rem;">Déconnexion</button>
-            </form>
-            <form action="{% url 'delete_account' %}" method="post">
-                {% csrf_token %}
-                <button type="submit" class="bg-dark-blue text-white p-1 rounded-md" style="font-size: 0.7rem;">Supprimer le compte</button>
-            </form>
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="bg-dark-blue text-white p-1 rounded-md"
+                style="font-size: 0.7rem;">Déconnexion</button>
+        </form>
+        <form action="{% url 'delete_account' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="bg-dark-blue text-white p-1 rounded-md" style="font-size: 0.7rem;">Supprimer le
+                compte</button>
+        </form>
         {% endif %}
     </div>
 </body>

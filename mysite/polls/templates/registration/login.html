@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,30 +8,36 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-image: url('https://www.outside.fr/wp-content/uploads/2021/08/UTMB_Alexis-Berg-14.webp'); /* Ajoutez le chemin de votre image */
+            background-image: url('https://www.outside.fr/wp-content/uploads/2021/08/UTMB_Alexis-Berg-14.webp');
+            /* Ajoutez le chemin de votre image */
             background-size: cover;
             background-position: center;
             margin: 0;
             padding: 0;
             height: 100vh;
             display: flex;
-            justify-content: center; /* Centre le contenu horizontalement */
-            align-items: center; /* Centre le contenu verticalement */
+            justify-content: center;
+            /* Centre le contenu horizontalement */
+            align-items: center;
+            /* Centre le contenu verticalement */
         }
 
         .login-container {
-            background-color: #192f3f; /* Couleur de fond pour le cadre de connexion */
+            background-color: #192f3f;
+            /* Couleur de fond pour le cadre de connexion */
             color: white;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
             width: 300px;
             text-align: center;
-            margin-top: 20px; /* Ajoute un espace en haut pour améliorer l'apparence */
+            margin-top: 20px;
+            /* Ajoute un espace en haut pour améliorer l'apparence */
         }
 
         .login-container h2 {
-            color: white; /* Couleur du texte */
+            color: white;
+            /* Couleur du texte */
         }
 
         .login-form {
@@ -44,24 +51,28 @@
         .form-group label {
             display: block;
             margin-bottom: 5px;
-            color: white; /* Couleur du texte */
+            color: white;
+            /* Couleur du texte */
         }
 
         .rounded-md {
             border-radius: 0.5rem;
         }
+
         .form-group input {
             width: 100%;
             padding: 10px;
             box-sizing: border-box;
-            border: 1px solid #b2bec3; /* Couleur de bordure */
+            border: 1px solid #b2bec3;
+            /* Couleur de bordure */
             border-radius: 6px;
             background-color: #ecf0f1;
         }
 
         .form-group button {
             font-family: Arial, sans-serif;
-            background-color: #fff; /* Couleur du bouton */
+            background-color: #fff;
+            /* Couleur du bouton */
             color: #192f3f;
             padding: 12px;
             border: none;
@@ -70,26 +81,28 @@
         }
     </style>
 </head>
+
 <body>
 
-<div class="login-container rounded-md">
-    <h2>Connexion</h2>
-    <form method="post">
-      {% csrf_token %}
-      <div class="form-group">
-          <label for="username">Nom d'utilisateur :</label>
-          <input type="text" id="username" name="username" required>
-      </div>
-      <div class="form-group">
-          <label for="password">Mot de passe :</label>
-          <input type="password" id="password" name="password" required>
-      </div>
-      <div class="form-group">
-          <button type="submit">Se Connecter</button>
-      </div>
-    </form> 
-   
-</div>
+    <div class="login-container rounded-md">
+        <h2>Connexion</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="username">Nom d'utilisateur :</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Mot de passe :</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <button type="submit">Se Connecter</button>
+            </div>
+        </form>
+
+    </div>
 
 </body>
+
 </html>

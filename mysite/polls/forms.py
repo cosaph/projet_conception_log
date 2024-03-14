@@ -1,6 +1,7 @@
 from django import forms
 from .models import ListItem
 
+
 class ListItemForm(forms.ModelForm):
     """
     Formulaire Django pour la création et la mise à jour d'éléments ListItem.
@@ -14,8 +15,7 @@ class ListItemForm(forms.ModelForm):
         model (Model): Le modèle Django auquel le formulaire est associé.
         fields (list): La liste des champs du modèle qui doivent être inclus dans le formulaire.
     """
+
     class Meta:
         model = ListItem
-        fields = ['content']
-
-
+        fields = ["content"]

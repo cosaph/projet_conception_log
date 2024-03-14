@@ -44,7 +44,6 @@ from django.views.decorators.csrf import csrf_exempt
 from .models import ListItem
 
 
-
 #### ----- Views ----- ####
 
 def index(request):
@@ -84,20 +83,22 @@ def scrap(request):
         scraped_data = []
 
         for page in range(1, 6):
-            query_params = {'region': ville, 'distance': f'{min_distance};{max_distance}', 'country': 'FR', 'page': page}
+            query_params = {
+                'region': ville, 'distance': f'{min_distance};{max_distance}', 'country': 'FR', 'page': page}
             response = requests.get(base_url, params=query_params)
             soup = BeautifulSoup(response.text, 'html.parser')
             a_elements = soup.find_all('a', class_="text-dark")
             i_elements = soup.find_all('span', class_="city pt-2")
             img_tags = soup.find_all('img', class_="img-fluid")
-            image_urls = [img.get('data-src') for img in img_tags if img.get('data-src')]
+            image_urls = [img.get('data-src')
+                          for img in img_tags if img.get('data-src')]
 
             for title, city, img_url in zip(a_elements, i_elements, image_urls):
                 image_urls = "https://www.runtrail.fr/" + img_url
-                scraped_data.append({'title': title.text, 'city': city.text, 'img_url': image_urls})
+                scraped_data.append(
+                    {'title': title.text, 'city': city.text, 'img_url': image_urls})
 
         return scraped_data  # Retourne les données au lieu de HTML
-
 
 
 @csrf_exempt
@@ -113,8 +114,9 @@ def submit_form(request):
     """
     if request.method == 'POST':
         # Appel de la fonction de scraping avec les données du formulaire
-        scraped_data = scrap(request)  # Assurez-vous que cette fonction attend et traite les données POST
-        
+        # Assurez-vous que cette fonction attend et traite les données POST
+        scraped_data = scrap(request)
+
         # Rendu du template avec les données de scraping
         return render(request, 'polls/scrap_result.html', {'scraped_data': scraped_data})
     else:
@@ -138,7 +140,8 @@ def signup_view(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('login')  # Redirige vers la page de connexion après l'inscription réussie
+            # Redirige vers la page de connexion après l'inscription réussie
+            return redirect('login')
     else:
         form = UserCreationForm()
     return render(request, 'signup.html', {'form': form})
@@ -164,6 +167,7 @@ def delete_account(request):
         return redirect('index')
     return render(request, 'delete_account.html')
 
+
 @require_POST
 @login_required
 def logout_view(request):
@@ -178,7 +182,6 @@ def logout_view(request):
     """
     logout(request)
     return redirect(reverse('index'))
-
 
 
 @login_required
@@ -216,7 +219,6 @@ def list_view(request):
     return render(request, 'list.html', context)
 
 
-
 @login_required
 def add_item(request):
     if request.method == 'POST':
@@ -226,10 +228,10 @@ def add_item(request):
         # Create a new ListItem instance and save it to the database
         item = ListItem(user=request.user, content=f"{title}, {city}")
         item.save()
-        
+
         # Pass the data as context variables to the template
         return render(request, 'list.html', {'title': title, 'city': city})
-    
+
     return HttpResponse('Invalid request')
 
 

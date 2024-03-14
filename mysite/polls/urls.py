@@ -30,22 +30,22 @@ urlpatterns = [
     # Page d'accueil : Affiche de le formulaire de recherche
     path("", views.index, name="index"),
     # Connexion
-    path('login/', auth_views.LoginView.as_view(), name='login'),
+    path("login/", auth_views.LoginView.as_view(), name="login"),
     # Déconnexion
-    path('logout/', views.logout_view, name='logout'),
+    path("logout/", views.logout_view, name="logout"),
     # Inscription
-    path('signup/', views.signup_view, name='signup'),
+    path("signup/", views.signup_view, name="signup"),
     # Liste de favoris
-    path('list/', list_view, name='list'),
+    path("list/", list_view, name="list"),
     # Ajout d'une course aux favoris
-    path('add_item/', add_item, name='add_item'),
+    path("add_item/", add_item, name="add_item"),
     # Suppression d'une course présente dans les favoris
-    path('list/delete/<int:item_id>/', delete_item_view, name='delete_item'),
+    path("list/delete/<int:item_id>/", delete_item_view, name="delete_item"),
     # Suppression d'un compte
-    path('delete-account/', views.delete_account, name='delete_account'),
+    path("delete-account/", views.delete_account, name="delete_account"),
     # Path pour récupérer les infos utiles au scraping
-    path('submit-form', views.submit_form, name='submit_form'),
-    # 
-    path('add_item/', views.add_item, name='add_item'),
-    path('add_item/<int:fav_id>/', views.add_item, name='add_item')
+    path("submit-form", views.submit_form, name="submit_form"),
+    #
+    path("add_item/", views.add_item, name="add_item"),
+    path("add_item/<int:fav_id>/", views.add_item, name="add_item"),
 ]

@@ -1,25 +1,27 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-{% load static %}
-  <link rel="stylesheet" href="{% static 'polls/style_list.css' %}"> 
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'polls/style_list.css' %}">
 </head>
+
 <body>
   <div class="banner-image">
     <h1 class="typo-h1 text-dark-blue max-w-[530px]">MA LISTE</h1>
     <p class="typo-h1 text-dark-blue max-w-[530px]">{{ title }}</p>
     <p class="typo-h1 text-dark-blue max-w-[530px]">{{ city }}</p>
-  </div> 
+  </div>
 
   <ul>
     {% for item in items %}
-      <li>
-        {{ item.content }}
-        <form method="post" action="{% url 'delete_item' item.id %}">
-          {% csrf_token %}
-          <button type="submit">Supprimer</button>
-        </form>
-      </li>
+    <li>
+      {{ item.content }}
+      <form method="post" action="{% url 'delete_item' item.id %}">
+        {% csrf_token %}
+        <button type="submit">Supprimer</button>
+      </form>
+    </li>
     {% endfor %}
   </ul>
 
@@ -33,4 +35,5 @@
 
   <a href="{% url 'index' %}" class="bg-dark-blue text-white px-4 py-2 rounded-md" style="font-size: 15px;">Retour</a>
 </body>
+
 </html>

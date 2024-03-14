@@ -1,8 +1,8 @@
 {% block content %}
-    <h2>Supprimer le compte</h2>
-    <p>Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible.</p>
-    <form method="POST" action="{% url 'delete_account' %}">
-        {% csrf_token %}
-        <button type="submit">Supprimer le compte</button>
-    </form>
+<h2>Supprimer le compte</h2>
+<p>Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible.</p>
+<form method="POST" action="{% url 'delete_account' %}">
+    {% csrf_token %}
+    <button type="submit">Supprimer le compte</button>
+</form>
 {% endblock %}
