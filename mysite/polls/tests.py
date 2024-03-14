@@ -20,18 +20,27 @@ class IndexViewTest(TestCase):
 
 from .views import scrap
 
-class ScrapViewTest(TestCase):
-    def test_scrap_view(self):
-        request = HttpRequest()
-        request.method = 'POST'
-        request.POST['ville'] = 'nom_de_la_ville'
-        request.POST['minDistance'] = 'valeur_min_distance'
-        request.POST['maxDistance'] = 'valeur_max_distance'
+from django.test import TestCase, RequestFactory
+from .views import scrap
 
+class ScrapTestCase(TestCase):
+    def setUp(self):
+        self.factory = RequestFactory()
+
+    def test_scrap(self):
+        request = self.factory.post('/scrap/', {'ville': 'bretagne', 'minDistance': '10', 'maxDistance': '20'})
         response = scrap(request)
 
-        self.assertEqual(response.status_code, 200)  
-        self.assertIsInstance(response, list)  
+        # Assert that the response is a list
+        self.assertIsInstance(response, list)
+
+        # Assert that the response contains the expected keys
+        expected_keys = ['title', 'city', 'img_url']
+        for data in response:
+            self.assertCountEqual(expected_keys, data.keys())
+
+        # Add more assertions as needed
+        # For example, you can assert that the length of the response is as expected
 
 from .views import result
 
