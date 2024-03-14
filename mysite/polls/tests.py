@@ -51,12 +51,8 @@ class SignupViewTestCase(TestCase):
         request = self.factory.post('/signup/', {'username': 'testuser', 'password1': 'testpassword', 'password2': 'testpassword'})
         response = signup_view(request)
 
-        # Assert that the response is a redirect
         self.assertEqual(response.status_code, 302)
-        self.assertEqual(response.url, '/polls/login/')  # Assert the redirect URL
-
-        # Add more assertions as needed
-        # For example, you can assert that a new user has been created in the database
+        self.assertEqual(response.url, '/polls/login/')  
 
 from .views import delete_account
 
