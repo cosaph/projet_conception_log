@@ -48,6 +48,15 @@ from .models import ListItem
 #### ----- Views ----- ####
 
 def index(request):
+    """
+    Affiche la page d'accueil de l'application.
+
+    Args:
+        request: Objet HttpRequest de Django.
+
+    Returns:
+        HttpResponse: Rendu du template de l'index.
+    """
     template = loader.get_template("polls/index.html")
 
     context = {}
@@ -56,6 +65,16 @@ def index(request):
 
 @csrf_exempt
 def scrap(request):
+    """
+    Effectue le scraping des données des événements de course basé sur les critères spécifiés dans la requête POST.
+
+    Args:
+        request: Objet HttpRequest de Django contenant les critères de recherche comme la ville, 
+                 la distance minimale et maximale.
+
+    Returns:
+        List[Dict]: Liste de dictionnaires avec les données scrapées ('title', 'city', 'img_url').
+    """
     if request.method == "POST":
         ville = request.POST.get('ville')
         min_distance = request.POST.get('minDistance')
@@ -83,6 +102,15 @@ def scrap(request):
 
 @csrf_exempt
 def submit_form(request):
+    """
+    Gère la soumission du formulaire de recherche et affiche les résultats du scraping.
+
+    Args:
+        request: Objet HttpRequest de Django.
+
+    Returns:
+        HttpResponse: Rendu du template des résultats de scraping si la méthode est POST ; sinon, renvoie une erreur HTTP 405.
+    """
     if request.method == 'POST':
         # Appel de la fonction de scraping avec les données du formulaire
         scraped_data = scrap(request)  # Assurez-vous que cette fonction attend et traite les données POST
@@ -94,6 +122,18 @@ def submit_form(request):
 
 
 def signup_view(request):
+    """
+    Gère le processus d'inscription des utilisateurs.
+
+    Si la méthode est POST et que le formulaire est valide, enregistre un nouvel utilisateur
+    et redirige vers la page de connexion. Sinon, affiche un formulaire d'inscription vide.
+
+    Args:
+        request: L'objet HttpRequest.
+
+    Returns:
+        HttpResponse: Le rendu du template 'signup.html' avec le formulaire d'inscription.
+    """
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
@@ -106,6 +146,17 @@ def signup_view(request):
 
 @login_required
 def delete_account(request):
+    """
+    Permet à l'utilisateur connecté de supprimer son compte.
+
+    Après la suppression, l'utilisateur est déconnecté et redirigé vers la page d'accueil.
+
+    Args:
+        request: L'objet HttpRequest.
+
+    Returns:
+        HttpResponse: Redirection vers la page d'accueil après suppression du compte.
+    """
     if request.method == 'POST':
         user = request.user
         user.delete()
@@ -116,6 +167,15 @@ def delete_account(request):
 @require_POST
 @login_required
 def logout_view(request):
+    """
+    Déconnecte l'utilisateur et redirige vers la page d'accueil.
+
+    Args:
+        request: L'objet HttpRequest.
+
+    Returns:
+        HttpResponse: Redirection vers la page d'accueil.
+    """
     logout(request)
     return redirect(reverse('index'))
 
@@ -123,6 +183,19 @@ def logout_view(request):
 
 @login_required
 def list_view(request):
+    """
+    Affiche la liste des courses favorites de l'utilisateur connecté et gère l'ajout de nouvelles courses
+
+    Si la méthode est POST et que le formulaire est valide, ajoute un nouvel élément à la liste
+    de l'utilisateur et redirige vers la même vue. Sinon, affiche les éléments existants et un
+    formulaire pour ajouter un nouvel élément.
+
+    Args:
+        request: L'objet HttpRequest.
+
+    Returns:
+        HttpResponse: Le rendu du template 'list.html' avec les éléments de la liste et le formulaire.
+    """
     user = request.user
     items = ListItem.objects.filter(user=user)
 
@@ -162,6 +235,16 @@ def add_item(request):
 
 @login_required
 def delete_item_view(request, item_id):
+    """
+    Supprime un élément spécifié par son id et redirige vers la vue de la liste.
+
+    Args:
+        request: L'objet HttpRequest.
+        item_id: L'identifiant de l'élément à supprimer.
+
+    Returns:
+        HttpResponseRedirect vers la vue de la liste après la suppression de l'élément.
+    """
     item = ListItem.objects.get(id=item_id)
     item.delete()
     return redirect('list')
