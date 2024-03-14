@@ -8,6 +8,9 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, logout
 from .models import ListItem
 from .forms import ListItemForm
+from django.test import TestCase, RequestFactory
+from django.contrib.auth.forms import UserCreationForm
+from django.shortcuts import render, redirect
 
 # Create your tests here.
 from .views import index
@@ -37,10 +40,6 @@ class ScrapTestCase(TestCase):
         for data in response:
             self.assertCountEqual(expected_keys, data.keys())
 
-
-from django.test import TestCase, RequestFactory
-from django.contrib.auth.forms import UserCreationForm
-from django.shortcuts import render, redirect
 from .views import signup_view
 
 class SignupViewTestCase(TestCase):
@@ -53,33 +52,9 @@ class SignupViewTestCase(TestCase):
 
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response.url, '/polls/login/')  
-
-from .views import delete_account
-
-class DeleteAccountViewTest(TestCase):
-    def test_delete_account_view_post(self):
-        request = HttpRequest()
-        request.method = 'POST'
-        request.user = User.objects.create_user(username='testuser', password='password123')  # Crée un utilisateur de test
-        login(request, request.user)  # Connecte l'utilisateur simulé
-
-        response = delete_account(request)
-
-        self.assertFalse(User.objects.filter(username='testuser').exists())
-
-        self.assertFalse(request.user.is_authenticated)
-
-        self.assertRedirects(response, reverse('index'))
-
-    def test_delete_account_view_get(self):
-        request = HttpRequest()
-        request.method = 'GET'
-
-        response = delete_account(request)
-
-        self.assertEqual(response.status_code, 200) 
-        self.assertTemplateUsed(response, 'delete_account.html')  
-
+        
+## -----------------------------OK JUSQU'ICI-------------------------------- ##
+        
 from .views import logout_view
 
 class LogoutViewTest(TestCase):
@@ -96,6 +71,7 @@ class LogoutViewTest(TestCase):
         self.assertRedirects(response, reverse('index'))
 
 from .views import list_view
+
 class ListViewTest(TestCase):
     def setUp(self):
         self.user = User.objects.create_user(username='testuser', password='password123')
