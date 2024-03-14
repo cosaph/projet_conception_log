@@ -6,7 +6,7 @@
 #    By: ccottet <ccottet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/08 09:14:40 by ccottet           #+#    #+#              #
-#    Updated: 2024/03/13 09:15:06 by ccottet          ###   ########.fr        #
+#    Updated: 2024/03/14 12:01:34 by ccottet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -123,11 +123,6 @@ def scrap(request):
         return scraped_data  # Retourne les données au lieu de HTML
 
 
-def result(request):
-    template = loader.get_template("polls/result.html")
-    table_html = scrap(request)
-    context = {'table_html': table_html}
-    return HttpResponse(template.render(context, request))
 
 @csrf_exempt
 def submit_form(request):

@@ -37,19 +37,6 @@ class ScrapTestCase(TestCase):
         for data in response:
             self.assertCountEqual(expected_keys, data.keys())
 
-from .views import result
-
-class ResultViewTest(TestCase):
-    def test_result_view(self):
-        request = HttpRequest()
-        request.method = 'GET'
-
-        response = result(request)
-
-        self.assertEqual(response.status_code, 200) 
-        self.assertTemplateUsed(response, 'polls/result.html')  
-
-        self.assertIn('table_html', response.context)
 
 from .views import submit_form
 
