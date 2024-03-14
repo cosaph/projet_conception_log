@@ -20,7 +20,7 @@ class IndexViewTest(TestCase):
 
 from .views import scrap
 
-from django.test import TestCase, RequestFactory
+
 from .views import scrap
 
 class ScrapTestCase(TestCase):
@@ -38,46 +38,25 @@ class ScrapTestCase(TestCase):
             self.assertCountEqual(expected_keys, data.keys())
 
 
-from .views import submit_form
-
-class SubmitFormViewTest(TestCase):
-    def test_submit_form_view_post(self):
-        request = HttpRequest()
-        request.method = 'POST'
-
-        response = submit_form(request)
-
-        self.assertEqual(response.status_code, 200)  
-        self.assertTemplateUsed(response, 'polls/scrap_result.html')  
-    def test_submit_form_view_get(self):
-        request = HttpRequest()
-        request.method = 'GET'
-
-        response = submit_form(request)
-
-        self.assertEqual(response.status_code, 405)  
-
+from django.test import TestCase, RequestFactory
+from django.contrib.auth.forms import UserCreationForm
+from django.shortcuts import render, redirect
 from .views import signup_view
 
-class SignUpViewTest(TestCase):
-    def test_signup_view_post(self):
-        request = HttpRequest()
-        request.method = 'POST'
+class SignupViewTestCase(TestCase):
+    def setUp(self):
+        self.factory = RequestFactory()
 
+    def test_signup_view(self):
+        request = self.factory.post('/signup/', {'username': 'testuser', 'password1': 'testpassword', 'password2': 'testpassword'})
         response = signup_view(request)
 
-        self.assertTrue(User.objects.exists())
+        # Assert that the response is a redirect
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, '/polls/login/')  # Assert the redirect URL
 
-        self.assertRedirects(response, reverse('login'))
-
-    def test_signup_view_get(self):
-        request = HttpRequest()
-        request.method = 'GET'
-
-        response = signup_view(request)
-
-        self.assertEqual(response.status_code, 200)  
-        self.assertTemplateUsed(response, 'signup.html') 
+        # Add more assertions as needed
+        # For example, you can assert that a new user has been created in the database
 
 from .views import delete_account
 

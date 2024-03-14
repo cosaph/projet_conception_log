@@ -6,7 +6,7 @@
 #    By: ccottet <ccottet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/08 09:14:40 by ccottet           #+#    #+#              #
-#    Updated: 2024/03/14 12:01:34 by ccottet          ###   ########.fr        #
+#    Updated: 2024/03/14 12:11:41 by ccottet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -134,25 +134,6 @@ def submit_form(request):
         return render(request, 'polls/scrap_result.html', {'scraped_data': scraped_data})
     else:
         return HttpResponse("Méthode non autorisée.", status=405)
-
-""" # -- fonction test scrap image -- #
-
-url = "https://www.runtrail.fr/events/search?region=bretagne&elevation=50;500&country=FR&page=2"
-response = requests.get(url)
-soup = BeautifulSoup(response.text, 'html.parser')
-img_tags = soup.find_all('img', class_="img-fluid")
-
-image_urls = []
-for img in img_tags:
-    src = img.get('data-src')
-    if src:
-        image_urls.append(src)
-
-url_trail = "https://www.runtrail.fr/"
-
-liste_elements = [url_trail + element for element in image_urls]
-
-print(liste_elements) """
 
 
 def signup_view(request):

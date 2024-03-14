@@ -6,7 +6,7 @@
 #    By: ccottet <ccottet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/14 15:43:56 by ccottet           #+#    #+#              #
-#    Updated: 2024/03/13 08:51:19 by ccottet          ###   ########.fr        #
+#    Updated: 2024/03/14 12:03:55 by ccottet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ urlpatterns = [
     # ex: /polls/
     path("", views.index, name="index"),
     # include result.html
-    path('result.html', views.result, name='result'),
+    #path('result.html', views.result, name='result'),
     path('login/', auth_views.LoginView.as_view(), name='login'),
     path('logout/', views.logout_view, name='logout'),
     path('signup/', views.signup_view, name='signup'),
