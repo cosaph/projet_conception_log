@@ -16,7 +16,7 @@ Ce module contient les vues pour l'application de sondages.
 
 
 #### ----- Libraries ----- ####
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.template import loader
 from django.contrib.auth import logout
@@ -73,8 +73,6 @@ def post(self, request):
         item.content = f"{form.cleaned_data['title']}, {form.cleaned_data['city']}"
         item.save()
     return redirect(reverse("list"))
-
-
 
 def index(request):
     """
@@ -282,7 +280,7 @@ def add_item(request):
 
 
 @login_required
-def delete_item_view(item_id):
+def delete_item_view(request, item_id):
     """
     Supprime un élément spécifié par son id et redirige vers la vue de la liste.
 
@@ -293,6 +291,6 @@ def delete_item_view(item_id):
     Returns:
         HttpResponseRedirect vers la vue de la liste après la suppression de l'élément.
     """
-    item = ListItem.objects.get(id=item_id)
+    item = get_object_or_404(ListItem, id=item_id)
     item.delete()
     return redirect('list')

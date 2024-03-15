@@ -12,8 +12,6 @@ consultez la documentation officielle : https://docs.djangoproject.com/en/3.2/to
 
 from django.db import models
 from django.contrib.auth.models import User
-from django.shortcuts import redirect
-from django.shortcuts import get_object_or_404
 
 
 class ListItem(models.Model):
@@ -38,18 +36,3 @@ class ListItem(models.Model):
     objects = models.Manager()
     form_class = None
     template_name = "list.html"
-
-def delete_item_view (item_id):
-    """
-    Fonction pour supprimer un élément spécifique de la liste des favoris d'un utilisateur.
-
-    Args:
-        request: L'objet HttpRequest.
-        item_id: L'ID de l'élément de la liste à supprimer.
-
-    Returns:
-        HttpResponseRedirect: Redirige vers la vue de la liste après la suppression de l'élément.
-    """
-    item = get_object_or_404(ListItem, id=item_id)
-    item.delete()
-    return redirect("list")
