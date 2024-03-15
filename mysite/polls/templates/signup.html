@@ -1,35 +1,43 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-image: url('https://www.outside.fr/wp-content/uploads/2021/08/UTMB_Alexis-Berg-14.webp'); /* Ajoutez le chemin de votre image */
+            background-image: url('https://www.outside.fr/wp-content/uploads/2021/08/UTMB_Alexis-Berg-14.webp');
+            /* Ajoutez le chemin de votre image */
             background-size: cover;
             background-position: center;
             margin: 0;
             padding: 0;
             height: 100vh;
             display: flex;
-            justify-content: center; /* Centre le contenu horizontalement */
-            align-items: center; /* Centre le contenu verticalement */
+            justify-content: center;
+            /* Centre le contenu horizontalement */
+            align-items: center;
+            /* Centre le contenu verticalement */
         }
 
         .registration-container {
-            background-color: #57606f; /* Couleur de fond pour le cadre d'inscription */
+            background-color: #57606f;
+            /* Couleur de fond pour le cadre d'inscription */
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
             width: 300px;
             text-align: center;
-            margin-top: 20px; /* Ajoute un espace en haut pour améliorer l'apparence */
+            margin-top: 20px;
+            /* Ajoute un espace en haut pour améliorer l'apparence */
         }
 
         .registration-container h2 {
-            color: #2d3436; /* Couleur du texte */
-            display: none; /* Rend le texte invisible */
+            color: #2d3436;
+            /* Couleur du texte */
+            display: none;
+            /* Rend le texte invisible */
         }
 
         .registration-form {
@@ -43,20 +51,23 @@
         .form-group label {
             display: block;
             margin-bottom: 5px;
-            color: #57606f; /* Couleur du texte */
+            color: #57606f;
+            /* Couleur du texte */
         }
 
         .form-group input {
             width: 100%;
             padding: 10px;
             box-sizing: border-box;
-            border: 1px solid #b2bec3; /* Couleur de bordure */
+            border: 1px solid #b2bec3;
+            /* Couleur de bordure */
             border-radius: 6px;
             background-color: #ecf0f1;
         }
 
         .form-group button {
-            background-color: #192f3f; /* Couleur du bouton */
+            background-color: #192f3f;
+            /* Couleur du bouton */
             color: #fff;
             padding: 12px;
             border: none;
@@ -69,18 +80,20 @@
         }
     </style>
 </head>
+
 <body>
 
-  <div class="registration-container rounded-md">
-    <h2>{% block title %}Inscription{% endblock %}</h2>
-    <form class="registration-form" method="post">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <div class="form-group rounded-md">
-          <button type="submit">S'inscrire</button>
-      </div>
-    </form> 
-  </div>
+    <div class="registration-container rounded-md">
+        <h2>{% block title %}Inscription{% endblock %}</h2>
+        <form class="registration-form" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="form-group rounded-md">
+                <button type="submit">S'inscrire</button>
+            </div>
+        </form>
+    </div>
 
 </body>
+
 </html>
