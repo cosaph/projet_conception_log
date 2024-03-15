@@ -26,17 +26,19 @@ Avant de commencer, assurez-vous d'avoir installé les éléments suivants :
 
    git clone https://github.com/cosaph/projet_conception_log.git
 
-2. Accédez au répertoire du projet :
-
-    cd mysite
-
-3. Installez les dépendances requises :
+2. Installez les dépendances requises :
 
     pip install -r requirements.txt
 
+
+3. Accédez au répertoire du projet :
+
+    cd mysite
+
+
 ## Utilisation 🔧 
 1. Lancez le serveur Django :
-    python manage.py runserver
+    python3 manage.py runserver
 
 2. Accédez au site web dans votre navigateur à l'adresse: 
     http://localhost:8000/polls.
