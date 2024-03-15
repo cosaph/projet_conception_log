@@ -51,6 +51,6 @@ Avant de commencer, assurez-vous d'avoir installé les éléments suivants :
 ## Contribuer 🤸‍♀️
 Les contributions sont les bienvenues ! Si vous souhaitez améliorer ce projet, n'hésitez pas à ouvrir une demande d'extraction (pull request) avec vos modifications.
 
-## License 🧑‍⚖️
+## License 🧑‍⚖️ (MIT)
 
 N'hésitez pas à personnaliser le contenu du fichier `README.md` en fonction des détails spécifiques de votre projet.
