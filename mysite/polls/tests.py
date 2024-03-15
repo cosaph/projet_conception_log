@@ -8,7 +8,8 @@ Pour exécuter l'intégralité des tests :
 - Utilisez la commande `python manage.py test` depuis la racine du projet (mysite).
 
 Pour exécuter un test en particulier :
-- Utilisez la commande `python manage.py test polls.tests.<NomDeLaClasseDeTest>.<nom_de_la_fonction_de_test>`.
+- Utilisez la commande:
+`python manage.py test polls.tests.<NomDeLaClasseDeTest>.<nom_de_la_fonction_de_test>`.
 
 Par exemple, pour exécuter le test `test_signup_view` de la classe `SignupViewTestCase` :
 - Utilisez la commande `python manage.py test polls.tests.SignupViewTestCase.test_signup_view`.
@@ -56,11 +57,13 @@ class ScrapTestCase(TestCase):
         Vérifie si la fonction de scraping renvoie les données attendues.
 
         Args:
-            - request: Objet HttpRequest de Django contenant les critères de recherche comme la ville,
+            - request: Objet HttpRequest de Django contenant les critères
+                       de recherche comme la ville,
                        la distance minimale et maximale.
 
         Returns:
-            - response: Liste de dictionnaires avec les données scrapées ('title', 'city', 'img_url').
+            - response: Liste de dictionnaires avec les données scrapées
+                        ('title', 'city', 'img_url').
         """
         request = self.factory.post(
             "/scrap/", {"ville": "bretagne",
@@ -91,7 +94,8 @@ class SignupViewTestCase(TestCase):
         Vérifie si la vue d'inscription fonctionne correctement.
 
         Args:
-            - request: Objet HttpRequest de Django contenant les paramètres de création de compte (username, password1, password2).
+            - request: Objet HttpRequest de Django contenant les paramètres 
+                       de création de compte (username, password1, password2).
 
         Returns:
             - response: Objet HttpResponse de la redirection après l'inscription.

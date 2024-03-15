@@ -10,41 +10,71 @@
 #                                                                              #
 # **************************************************************************** #
 
+"""
+Ce module contient les vues pour l'application de sondages.
+"""
+
+
 #### ----- Libraries ----- ####
-from django.shortcuts import render
-import requests
-from bs4 import BeautifulSoup
-from io import BytesIO
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
-import csv
-import json
-from django.urls import path
-from django.template.loader import get_template
 from django.template import loader
-from django.http import JsonResponse
-from datetime import date
-from dateutil.relativedelta import relativedelta
-from django.shortcuts import redirect
-import urllib.parse
-from django.http import HttpResponseRedirect
-from django.shortcuts import render
-from django.contrib.auth.views import LogoutView
-from django.urls import reverse_lazy
 from django.contrib.auth import logout
-from django.shortcuts import redirect
 from django.urls import reverse
 from django.views.decorators.http import require_POST
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
+
+import requests
+from bs4 import BeautifulSoup
+
 from .models import ListItem
 from .forms import ListItemForm
-from django.shortcuts import get_object_or_404
-from django.contrib.auth.decorators import login_required
-
-from django.views.decorators.csrf import csrf_exempt
-from .models import ListItem
-
 
 #### ----- Views ----- ####
+
+def get(self, request):
+    """
+    Récupère et affiche les éléments de la liste de l'utilisateur courant.
+
+    Cette méthode est un exemple et devrait idéalement être déplacée dans un fichier views.py.
+
+    Args:
+        request: L'objet HttpRequest.
+
+    Returns:
+        HttpResponse: Le rendu du template avec la liste des éléments 
+                        et un formulaire pour en ajouter de nouveaux.
+    """
+    user = request.user
+    items = ListItem.objects.filter(user=user)
+    form = self.form_class()
+    context = {"items": items, "form": form}
+    return render(request, self.template_name, context)
+
+def post(self, request):
+    """
+    Traite la soumission d'un formulaire pour ajouter un nouvel élément à la liste 
+    de l'utilisateur courant.
+
+    Cette méthode est un exemple et devrait idéalement être déplacée dans un fichier views.py.
+
+    Args:
+        request: L'objet HttpRequest.
+
+    Returns:
+        HttpResponseRedirect: Redirige vers la vue de la liste après l'ajout de l'élément.
+    """
+    form = self.form_class(request.POST)
+    if form.is_valid():
+        item = form.save(commit=False)
+        item.user = request.user
+        item.content = f"{form.cleaned_data['title']}, {form.cleaned_data['city']}"
+        item.save()
+    return redirect(reverse("list"))
+
+
 
 def index(request):
     """
@@ -61,11 +91,11 @@ def index(request):
     context = {}
     return HttpResponse(template.render(context, request))
 
-
 @csrf_exempt
 def scrap(request):
     """
-    Effectue le scraping des données des événements de course basé sur les critères spécifiés dans la requête POST.
+    Effectue le scraping des données des événements de course basé sur les critères
+    spécifiés dans la requête POST.
 
     Args:
         request: Objet HttpRequest de Django contenant les critères de recherche comme la ville, 
@@ -84,8 +114,9 @@ def scrap(request):
 
         for page in range(1, 6):
             query_params = {
-                'region': ville, 'distance': f'{min_distance};{max_distance}', 'country': 'FR', 'page': page}
-            response = requests.get(base_url, params=query_params)
+                'region': ville, 'distance': f'{min_distance};{max_distance}', 
+                'country': 'FR', 'page': page}
+            response = requests.get(base_url, params=query_params, timeout=120)
             soup = BeautifulSoup(response.text, 'html.parser')
             a_elements = soup.find_all('a', class_="text-dark")
             i_elements = soup.find_all('span', class_="city pt-2")
@@ -98,7 +129,7 @@ def scrap(request):
                 scraped_data.append(
                     {'title': title.text, 'city': city.text, 'img_url': image_urls})
 
-        return scraped_data  # Retourne les données au lieu de HTML
+        return scraped_data if scraped_data else []  # Retourne les données au lieu de HTML
 
 
 @csrf_exempt
@@ -110,7 +141,8 @@ def submit_form(request):
         request: Objet HttpRequest de Django.
 
     Returns:
-        HttpResponse: Rendu du template des résultats de scraping si la méthode est POST ; sinon, renvoie une erreur HTTP 405.
+        HttpResponse: Rendu du template des résultats de scraping si la méthode est POST ;
+                      sinon, renvoie une erreur HTTP 405.
     """
     if request.method == 'POST':
         # Appel de la fonction de scraping avec les données du formulaire
@@ -119,13 +151,11 @@ def submit_form(request):
 
         # Rendu du template avec les données de scraping
         return render(request, 'polls/scrap_result.html', {'scraped_data': scraped_data})
-    else:
-        return HttpResponse("Méthode non autorisée.", status=405)
 
 
 def signup_view(request):
     """
-    Gère le processus d'inscription des utilisateurs.
+    Gère le processus d'inscriptqion des utilisateurs.
 
     Si la méthode est POST et que le formulaire est valide, enregistre un nouvel utilisateur
     et redirige vers la page de connexion. Sinon, affiche un formulaire d'inscription vide.
@@ -187,7 +217,8 @@ def logout_view(request):
 @login_required
 def list_view(request):
     """
-    Affiche la liste des courses favorites de l'utilisateur connecté et gère l'ajout de nouvelles courses
+    Affiche la liste des courses favorites de l'utilisateur connecté 
+    et gère l'ajout de nouvelles courses
 
     Si la méthode est POST et que le formulaire est valide, ajoute un nouvel élément à la liste
     de l'utilisateur et redirige vers la même vue. Sinon, affiche les éléments existants et un
@@ -197,7 +228,8 @@ def list_view(request):
         request: L'objet HttpRequest.
 
     Returns:
-        HttpResponse: Le rendu du template 'list.html' avec les éléments de la liste et le formulaire.
+        HttpResponse: Le rendu du template 'list.html' avec les éléments de la liste et l
+        le formulaire.
     """
     user = request.user
     items = ListItem.objects.filter(user=user)
@@ -215,28 +247,42 @@ def list_view(request):
         'items': items,
         'form': form
     }
-
     return render(request, 'list.html', context)
 
 
 @login_required
 def add_item(request):
+    """
+    Gère l'ajout d'un nouvel élément à la liste des courses favorites de l'utilisateur connecté.
+
+    Si la méthode est POST et que le formulaire est valide, crée une nouvelle instance de ListItem
+    et l'enregistre dans la base de données. Ensuite, redirige vers la vue de liste des courses.
+    Sinon, affiche un message d'erreur.
+
+    Args:
+        request: L'objet HttpRequest de Django.
+
+    Returns:
+        HttpResponse: Rendu du template de la liste des courses si la méthode est POST 
+        et le formulaire est valide ;
+        sinon, renvoie une réponse HTTP indiquant une requête invalide.
+    """
     if request.method == 'POST':
         title = request.POST.get('title')
         city = request.POST.get('city')
 
-        # Create a new ListItem instance and save it to the database
+        # Crée une nouvelle instance de ListItem et l'enregistre dans la base de données
         item = ListItem(user=request.user, content=f"{title}, {city}")
         item.save()
 
-        # Pass the data as context variables to the template
+        # Passe les données en tant que variables de contexte pour le rendu du template
         return render(request, 'list.html', {'title': title, 'city': city})
 
-    return HttpResponse('Invalid request')
+    return HttpResponse('Requête invalide')
 
 
 @login_required
-def delete_item_view(request, item_id):
+def delete_item_view(item_id):
     """
     Supprime un élément spécifié par son id et redirige vers la vue de la liste.
 

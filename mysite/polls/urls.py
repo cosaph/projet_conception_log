@@ -13,18 +13,23 @@
 """
 Ce module définit les URL pour l'application de scraping de courses et trails.
 
-Il associe les chemins d'URL aux vues spécifiques qui doivent être appelées lorsque ces URL sont sollicitées par un navigateur ou une requête HTTP. Cela permet de naviguer dans l'application web et d'accéder à ses différentes fonctionnalités.
+Il associe les chemins d'URL aux vues spécifiques qui doivent être appelées lorsque 
+ces URL sont sollicitées par un navigateur ou une requête HTTP. Cela permet de naviguer 
+dans l'application web et d'accéder à ses différentes fonctionnalités.
 
 Les routes disponibles sont :
 - La page d'accueil, qui affiche le formulaire de recherche.
-- La page de résultat, qui montre les résultats du scraping basé sur les critères de recherche soumis.
-- Une action pour soumettre le formulaire de recherche, traitant les données du formulaire et retournant les résultats du scraping.
+- La page de résultat, qui montre les résultats du scraping basé sur les 
+critères de recherche soumis.
+- Une action pour soumettre le formulaire de recherche, traitant les données 
+du formulaire et retournant les résultats du scraping.
 """
 
 from django.urls import path
-from . import views
 from django.contrib.auth import views as auth_views
+from polls import views
 from .views import list_view, delete_item_view, add_item
+
 
 urlpatterns = [
     # Page d'accueil : Affiche de le formulaire de recherche
